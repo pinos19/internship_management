@@ -14,11 +14,31 @@
 	include("../fonctions.php");
 	require('../connexion.php');
 	$pdo->exec("SET CHARACTER SET utf8");
-	$requete_stagiaires = $pdo->query("select E.nom as nom, prenom, civilite, date_naissance, id_adresse, email,tel , 
-						annee_scolaire, C.nom as nom_campus from etudiant E, campus C where annee_scolaire not like 'Dipl%'
-						and C.id_campus=E.id_campus");
 
-	
+	switch($annee_scolaire){
+		case 'Toutes les années confondues':
+			$and = "";
+			break;
+		case 'Première Année':
+			$and = "and annee_scolaire='Première Année'";
+			break;
+		case 'Deuxième Année':
+			$and = "and annee_scolaire='Deuxième Année'";
+			break;
+		case 'Troisième Année':
+			$and = "and annee_scolaire='Troisième Année'";
+			break;
+		case 'Diplômé/Plus en formation':
+			$and = "and annee_scolaire='Diplômé/Plus en formation'";
+			break;
+		default:
+			exit("Un erreur est survenue");
+
+	}
+	$requete_preparee = "select E.nom as nom, prenom, civilite, date_naissance, id_adresse, email,tel , 
+						annee_scolaire, C.nom as nom_campus from etudiant E, campus C where C.id_campus=E.id_campus $and";
+
+	$requete_stagiaires = $pdo->query($requete_preparee);
 	$tous_les_stagiaires = $requete_stagiaires->fetchAll();
 	$nbr_stagiaires = count($tous_les_stagiaires);
 
