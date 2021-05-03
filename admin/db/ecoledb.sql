@@ -25,15 +25,15 @@ CREATE TABLE etudiant (
 	id_adresse smallint,
 	email varchar(100),
 	tel varchar(50),
-	annee_scolaire decimal(1), -- 1 pour première année, 2 pour deuxième, 3 pour troisième et 4 pour diplômé/sortie de l'école
+	annee_scolaire varchar(50), -- 1 pour première année, 2 pour deuxième, 3 pour troisième et 4 pour diplômé/sortie de l'école
 	id_campus tinyint
 );
 
 INSERT INTO `etudiant` (`civilite`,`nom`,`prenom`,`date_naissance`,`id_adresse`,`email`,`tel`,`annee_scolaire`,`id_campus`) VALUES 
- ('monsieur','nguyen','martin','1997-04-25',1,'martinnguyen@outlook.com','1111111111',2,1),
- ('monsieur','dupont','jean','1996-04-25',2,'jeandupont@outlook.com','1111111111',1,2),
- ('madame','flores','marie','1998-04-25',3,'floresmarie@outlook.com','1111111111',3,3),
- ('monsieur','lofter','christian','1994-04-25',4,'christianlofter@outlook.com','1111111111',4,1);
+ ('monsieur','nguyen','martin','1997-04-25',1,'martinnguyen@outlook.com','1111111111','Deuxième Année',1),
+ ('monsieur','dupont','jean','1996-04-25',2,'jeandupont@outlook.com','1111111111','Première Année',2),
+ ('madame','flores','marie','1998-04-25',3,'floresmarie@outlook.com','1111111111','Troisième Année',3),
+ ('monsieur','lofter','christian','1994-04-25',4,'christianlofter@outlook.com','1111111111','Diplômé/plus en formation',1);
 
 
 

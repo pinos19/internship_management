@@ -73,7 +73,17 @@
 
 	$requete_filieres = "SELECT * FROM filiere";
 	$result_requete_filieres = $pdo->query($requete_filieres);
-	$toutes_les_filieres = $result_requete_filieres->fetchAll();*/
+	$toutes_les_filieres = $result_requete_filieres->fetchAll();
+
+	*/
+	$req = $pdo->query("select E.nom as nom, prenom, civilite, date_naissance, id_adresse, email, 
+						annee_scolaire, C.nom as nom_campus from etudiant E, campus C where annee_scolaire in (1,2,3) 
+						and E.id_campus=C.id_campus");
+	$tous_les_stagiaires = $req->fetchAll();
+	$nbr_stagiaire = count($tous_les_stagiaires);
+	
+
+
 
 	?>
 	<!DOCTPE html>
@@ -104,7 +114,7 @@
 	                    <!-- ******************** Début Formulaire de recherche des stagiaires ***************** -->
 	                    <form class="form-inline">
 
-	                        <label> Année scolaire: </label>
+	                        <label> Année scolaire : </label>
 	                        <?php $annee_debut = 2010; ?>
 	                        <select class="form-control" name="annee_scolaire" onChange="this.form.submit();">
 	                            <?php
@@ -119,7 +129,7 @@
 
 	                        <label> Filière: </label>
 	                        <select class="form-control" name="index_filiere" onChange="this.form.submit();">
-	                            <option value=0>Toutes Les Filières</option>
+	                            <option value=0>Campus : </option>
 	                            <?php foreach ($toutes_les_filieres as $filiere) { ?>
 	                            <option value="<?php echo  $filiere['id'] ?>"
 	                                <?php if ($filiere['id'] === $index_filiere) echo "selected" ?>>
@@ -159,16 +169,13 @@
 	                    <tr>
 	                        <th> Nom </th>
 	                        <th> Prénom </th>
-	                        <th> Année Universitaire </th>
-	                        <th> Filière </th>
-	                        <th> Niveau </th>
-	                        <th> Etablissement d'accueil</th>
-	                        <th> Tuteur Interne</th>
-	                        <th> Tuteur Externe</th>
+							<th> Civilité</th>
+							<th> Date de naissance</th>
+	                        <th> Année de formation</th>
+	                        <th> Campus </th>
 	                        <th> Adresse Mail Académique</th>
-	                        <th> Photo</th>
+							<th> Numéro de téléphone</th>
 	                        <th> Actions</th>
-
 	                    </tr>
 	                </thead>
 
@@ -177,41 +184,40 @@
 	                    <?php foreach ($tous_les_stagiaires as $le_stagiaire) { ?>
 
 	                    <tr>
-	                        <td><?php echo $le_stagiaire['nom_stagiaire'] ?> </td>
+	                        <td><?php echo $le_stagiaire['nom'] ?> </td>
 	                        <td><?php echo $le_stagiaire['prenom'] ?> </td>
+	                        <td><?php echo $le_stagiaire['civilite'] ?> </td>
+	                        <td><?php echo $le_stagiaire['date_naissance'] ?> </td>
 	                        <td><?php echo $le_stagiaire['annee_scolaire'] ?> </td>
-	                        <td><?php echo $le_stagiaire['nom_filiere'] ?> </td>
-	                        <td><?php echo $le_stagiaire['classe'] ?> </td>
-	                        <td><?php echo $le_stagiaire['accueil'] ?> </td>
-	                        <td><?php echo $le_stagiaire['ti'] ?> </td>
-	                        <td><?php echo $le_stagiaire['te'] ?> </td>
-	                        <td><?php echo $le_stagiaire['adr_mail_acad'] ?> </td>
-	                        <td>
-	                            <img src="../images/<?php echo $le_stagiaire['photo'] ?>" class="img-thumbnail" width="40"
-	                                height="40"> </td>
+	                        <td><?php echo $le_stagiaire['nom_campus'] ?> </td>
+	                        <td><?php echo $le_stagiaire['email'] ?> </td>
+	                        <td><?php echo $le_stagiaire['tel'] ?> </td>
+	                        <!--<td>
+	                            <img src="../images/<?php /*echo $le_stagiaire['photo']*/ ?>" class="img-thumbnail" width="40"
+	                                height="40"> </td>-->
 	                        <td>
 
-	                            <a class="btn btn-success btn-edit-delete" href="page_edit_stagiaire.php
-							?id_stagiaire		=<?php echo $le_stagiaire['id'] ?>
-							&annee_scolaire		=<?php echo $annee_scolaire ?>
-							&index_classe		=<?php echo $index_classe ?>
-							&index_filiere		=<?php echo $index_filiere ?>">
+	                            <!--<a class="btn btn-success btn-edit-delete" href="page_edit_stagiaire.php
+							?id_stagiaire		=<?php //echo $le_stagiaire['id'] ?>
+							&annee_scolaire		=<?php //echo $annee_scolaire ?>
+							&index_classe		=<?php //echo $index_classe ?>
+							&index_filiere		=<?php //echo $index_filiere ?>">
 	                                <span class="fa fa-edit"></span>
 	                            </a>
 
-	                            <?php if ($_SESSION['user']['role'] == "Directeur") { ?>
+	                            <?php //if ($_SESSION['user']['role'] == "Directeur") { ?>
 	                            <a onclick="return confirm('Etes vous sur de vouloir supprimer ce stagiaire')"
-	                                href="delete_stagiaire.php?id=<?php echo $le_stagiaire['id'] ?>"
+	                                href="delete_stagiaire.php?id=<?php //echo $le_stagiaire['id'] ?>"
 	                                class="btn btn-danger btn-edit-delete">
 	                                <span class="fa fa-trash"></span>
 	                            </a>
 	                            <?php } ?>
 
 	                            <a class="btn btn-info btn-edit-delete" href="../fpdf/page_document.php
-					?id_stagiaire=<?php echo $le_stagiaire['id'] ?>
-					&annee_scolaire=<?php echo $annee_scolaire ?>">
+					?id_stagiaire=<?php //echo $le_stagiaire['id'] ?>
+					&annee_scolaire=<?php //echo $annee_scolaire ?>">
 	                                <span class="fa fa-print"></span>
-	                            </a>
+	                            </a>-->
 
 	                        </td>
 	                    </tr>
