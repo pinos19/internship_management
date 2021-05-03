@@ -92,7 +92,7 @@ function dateFrToDateEn($dateFr)
 function getEffectifAll()
 {
     global $pdo;
-    $res = $pdo->query("select count(*) as effectif from etudiant where annee_scolaire in(1,2,3)");
+    $res = $pdo->query("select count(*) as effectif from etudiant where annee_scolaire not like 'Dipl%'");
     $nbr = $res->fetch();
     return $nbr['effectif'];
 }
@@ -101,7 +101,7 @@ function getEffectifAll()
 function getEffectif1()
 {
     global $pdo;
-    $res = $pdo->query("select count(*) as effectif from etudiant where annee_scolaire=1");
+    $res = $pdo->query("select count(*) as effectif from etudiant where annee_scolaire like 'Prem%'");
     $nbr = $res->fetch();
     return $nbr['effectif'];
 }
@@ -110,7 +110,7 @@ function getEffectif1()
 function getEffectif2()
 {
     global $pdo;
-    $res = $pdo->query("select count(*) as effectif from etudiant where annee_scolaire=2");
+    $res = $pdo->query("select count(*) as effectif from etudiant where annee_scolaire like 'Deux%'");
     $nbr = $res->fetch();
     return $nbr['effectif'];
 }
@@ -120,7 +120,7 @@ function getEffectif2()
 function getEffectif3()
 {
     global $pdo;
-    $res = $pdo->query("select count(*) as effectif from etudiant where annee_scolaire=3");
+    $res = $pdo->query("select count(*) as effectif from etudiant where annee_scolaire like 'Trois%'");
     $nbr = $res->fetch();
     return $nbr['effectif'];
 }
