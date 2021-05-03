@@ -4,7 +4,7 @@ require_once('../connexion.php');
 require_once('../fonctions.php');
 
 
-$as = annee_scolaire_actuelle();
+$as = annee_scolaire_actuelle(); 
 
 $n1 = getEffectif12($as);
 $n2 = getEffectif1($as);
