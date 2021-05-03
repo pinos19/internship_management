@@ -8,7 +8,7 @@
 
 	require('../connexion.php');
 
-	if (isset($_GET['annee_scolaire']))
+	/*if (isset($_GET['annee_scolaire']))
 		$annee_scolaire = $_GET['annee_scolaire'];
 	else
 		$annee_scolaire = annee_scolaire_actuelle();
@@ -73,7 +73,7 @@
 
 	$requete_filieres = "SELECT * FROM filiere";
 	$result_requete_filieres = $pdo->query($requete_filieres);
-	$toutes_les_filieres = $result_requete_filieres->fetchAll();
+	$toutes_les_filieres = $result_requete_filieres->fetchAll();*/
 
 	?>
 	<!DOCTPE html>
