@@ -11,40 +11,63 @@
 	else
 		$annee_scolaire='Toutes les années confondues';
 
+	if(isset($_GET['campus']))
+		$campus=$_GET['campus'];
+	else
+		$campus='Tous les campus confondus';
+
 	include("../fonctions.php");
 	require('../connexion.php');
 	$pdo->exec("SET CHARACTER SET utf8");
 
 	switch($annee_scolaire){
 		case 'Toutes les années confondues':
-			$and = "";
+			$and1 = "";
 			break;
 		case 'Première Année':
-			$and = "and annee_scolaire='Première Année'";
+			$and1 = "and annee_scolaire='Première Année'";
 			break;
 		case 'Deuxième Année':
-			$and = "and annee_scolaire='Deuxième Année'";
+			$and1 = "and annee_scolaire='Deuxième Année'";
 			break;
 		case 'Troisième Année':
-			$and = "and annee_scolaire='Troisième Année'";
+			$and1 = "and annee_scolaire='Troisième Année'";
 			break;
 		case 'Diplômé/Plus en formation':
-			$and = "and annee_scolaire='Diplômé/Plus en formation'";
+			$and1 = "and annee_scolaire='Diplômé/Plus en formation'";
 			break;
 		default:
 			exit("Un erreur est survenue");
 
 	}
+
+	switch($campus){
+		case 'Tous les campus confondus':
+			$and2 = "";
+			break;
+		case 'Calais':
+			$and2 = "and C.nom='Calais'";
+			break;
+		case 'Saint-Omer':
+			$and2 = "and C.nom='Saint-Omer'";
+			break;
+		case 'Dunkerque':
+			$and2 = "and C.nom='Dunkerque'";
+			break;
+		default:
+			exit("Un erreur est survenue");
+	}
+
+
+
+
 	$requete_preparee = "select E.nom as nom, prenom, civilite, date_naissance, id_adresse, email,tel , 
-						annee_scolaire, C.nom as nom_campus from etudiant E, campus C where C.id_campus=E.id_campus $and";
+						annee_scolaire, C.nom as nom_campus from etudiant E, campus C where C.id_campus=E.id_campus $and1 $and2";
 
 	$requete_stagiaires = $pdo->query($requete_preparee);
 	$tous_les_stagiaires = $requete_stagiaires->fetchAll();
 	$nbr_stagiaires = count($tous_les_stagiaires);
 
-	$requete_campus = $pdo->query("SELECT * FROM campus");
-	$tous_les_campus = $requete_campus->fetchAll();
-	
 	
 
 
@@ -80,7 +103,8 @@
 	                    <!-- ******************** Début Formulaire de recherche des stagiaires ***************** -->
 	                    <form class="form-inline">
 							<?php $annees_tableau = array('Toutes les années confondues','Première Année','Deuxième Année','Troisième Année','Diplômé/Plus en formation');?>
-	                        <label> Année Scolaire : </label>
+	                        <!-- On met au-dessus les champs pour les années -->
+							<label> Année Scolaire : </label>
 	                        <select class="form-control" name="annee_scolaire" onChange="this.form.submit();">
 								<?php  foreach($annees_tableau as $annee){
 									;?>
@@ -89,17 +113,20 @@
 								</option>
 								<?php } ?>
 	                        </select>
-							<!--
+							
+							<?php $campus_tableau = array('Tous les campus confondus','Calais','Saint-Omer','Dunkerque');?><!-- On met ici les champs pour le campus-->
 	                        <label> Campus : </label>
-	                        <select class="form-control" name="index_filiere" onChange="this.form.submit();">
-	                            <option value=0>Campus : </option>
-	                            <?php// foreach ($tous_les_campus as $campus) { ?>
-	                            <option value="<?php// echo  $campus['id_campus'] ?>">
-	                                <?php// echo  $campus['nom'] ?>
-	                            </option>
-	                            <?php // } ?>
+	                        <select class="form-control" name="campus" onChange="this.form.submit();">
+	                            <?php foreach ($campus_tableau as $camp) { ?>
+	                            <option <?php if($campus==$camp) echo 'selected' ?>>
+									<?php echo $camp; ?>
+								</option>
+								<?php } ?>
 	                        </select>
 
+
+
+							<!--
 	                        <input type="text" name="mot_cle" value="<?php// echo $mot_cle ?>" class="form-control"
 	                            placeholder="Nom ou prénom">
 
