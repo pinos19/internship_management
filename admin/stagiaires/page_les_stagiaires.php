@@ -12,12 +12,13 @@
 		$annee_scolaire='Toutes les années confondues';
 
 	include("../fonctions.php");
-
 	require('../connexion.php');
 	$pdo->exec("SET CHARACTER SET utf8");
 	$requete_stagiaires = $pdo->query("select E.nom as nom, prenom, civilite, date_naissance, id_adresse, email,tel , 
 						annee_scolaire, C.nom as nom_campus from etudiant E, campus C where annee_scolaire not like 'Dipl%'
 						and C.id_campus=E.id_campus");
+
+	
 	$tous_les_stagiaires = $requete_stagiaires->fetchAll();
 	$nbr_stagiaires = count($tous_les_stagiaires);
 

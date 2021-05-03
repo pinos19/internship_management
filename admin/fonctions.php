@@ -1,5 +1,6 @@
 <?php
 function annee_scolaire_actuelle()
+
 {
     $mois = date("m"); //Le mois de la date actuelle
     $annee_actuelle = date("Y"); //L'année de la date actuelle
@@ -92,7 +93,8 @@ function dateFrToDateEn($dateFr)
 function getEffectifAll()
 {
     global $pdo;
-    $res = $pdo->query("select count(*) as effectif from etudiant where annee_scolaire not like 'Dipl%'");
+    $pdo->exec("SET CHARACTER SET utf8");
+    $res = $pdo->query("select count(*) as effectif from etudiant where annee_scolaire != 'Diplômé/Plus en formation'");
     $nbr = $res->fetch();
     return $nbr['effectif'];
 }
@@ -101,7 +103,8 @@ function getEffectifAll()
 function getEffectif1()
 {
     global $pdo;
-    $res = $pdo->query("select count(*) as effectif from etudiant where annee_scolaire like 'Prem%'");
+    $pdo->exec("SET CHARACTER SET utf8");
+    $res = $pdo->query("select count(*) as effectif from etudiant where annee_scolaire = 'Première Année'");
     $nbr = $res->fetch();
     return $nbr['effectif'];
 }
@@ -110,7 +113,8 @@ function getEffectif1()
 function getEffectif2()
 {
     global $pdo;
-    $res = $pdo->query("select count(*) as effectif from etudiant where annee_scolaire like 'Deux%'");
+    $pdo->exec("SET CHARACTER SET utf8");
+    $res = $pdo->query("select count(*) as effectif from etudiant where annee_scolaire = 'Deuxième Année'");
     $nbr = $res->fetch();
     return $nbr['effectif'];
 }
@@ -120,7 +124,8 @@ function getEffectif2()
 function getEffectif3()
 {
     global $pdo;
-    $res = $pdo->query("select count(*) as effectif from etudiant where annee_scolaire like 'Trois%'");
+    $pdo->exec("SET CHARACTER SET utf8");
+    $res = $pdo->query("select count(*) as effectif from etudiant where annee_scolaire = 'Troisième Année'");
     $nbr = $res->fetch();
     return $nbr['effectif'];
 }
