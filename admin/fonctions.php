@@ -98,12 +98,10 @@ function getEffectifAll()
 }
 
 //Effectif des inscris en 1ère
-function getEffectif1($as)
+function getEffectif1()
 {
     global $pdo;
-    $res = $pdo->query("select count(*) effectif from scolarite 
-                                where annee_scolaire='$as'
-                                and classe='ING1'");
+    $res = $pdo->query("select count(*) as effectif from etudiant where annee_scolaire=1");
     $nbr = $res->fetch();
     return $nbr['effectif'];
 }
@@ -112,9 +110,7 @@ function getEffectif1($as)
 function getEffectif2($as)
 {
     global $pdo;
-    $res = $pdo->query("select count(*) effectif from scolarite 
-                                where annee_scolaire='$as'
-                                and classe='ING2'");
+    $res = $pdo->query("select count(*) as effectif from etudiant where annee_scolaire=2");
     $nbr = $res->fetch();
     return $nbr['effectif'];
 }
@@ -124,9 +120,7 @@ function getEffectif2($as)
 function getEffectif3($as)
 {
     global $pdo;
-    $res = $pdo->query("select count(*) effectif from scolarite 
-                                where annee_scolaire='$as'
-                                and classe='ING3'");
+    $res = $pdo->query("select count(*) as effectif from etudiant where annee_scolaire=3");
     $nbr = $res->fetch();
     return $nbr['effectif'];
 }
