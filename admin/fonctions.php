@@ -107,7 +107,7 @@ function getEffectif1()
 }
 
 //Effectif des inscris en 2ème
-function getEffectif2($as)
+function getEffectif2()
 {
     global $pdo;
     $res = $pdo->query("select count(*) as effectif from etudiant where annee_scolaire=2");
@@ -117,7 +117,7 @@ function getEffectif2($as)
 
 //Effectif des iscrits en 3 ème année
 
-function getEffectif3($as)
+function getEffectif3()
 {
     global $pdo;
     $res = $pdo->query("select count(*) as effectif from etudiant where annee_scolaire=3");

@@ -16,12 +16,12 @@ $role    = $_SESSION['user']['role'];
     </div>
 
     <ul class="nav navbar-nav">
-        <li>
+        <!--<li>
             <a href="../filieres/page_les_filieres.php">
                 <span class="fa fa-mortar-board"></span>
                 Les Filières
             </a>
-        </li>
+        </li>-->
 
         <li>
             <a href="../stagiaires/page_les_stagiaires.php">
@@ -41,7 +41,7 @@ $role    = $_SESSION['user']['role'];
                 Les Programmes
             </a>
         </li> -->
-
+        
         <?php if ($role == "Directeur") { ?>
         <li>
             <a href="../utilisateurs/page_les_utilisateurs.php">

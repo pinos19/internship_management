@@ -36,6 +36,8 @@ INSERT INTO `etudiant` (`civilite`,`nom`,`prenom`,`date_naissance`,`id_adresse`,
  ('monsieur','lofter','christian','1994-04-25',4,'christianlofter@outlook.com','1111111111',4,1);
 
 
+
+
 create table campus (
 	id_campus tinyint not null auto_increment primary key, -- 1 pour calais, 2 pour saint-omer et 3 pour dunkerque
 	nom varchar(50),

@@ -51,7 +51,7 @@ $n4 = getEffectif3();
 
                 <div class="col-md-4">
                     <div class="stat stat1">
-                        <span class="fa fa-user-plus"></span>
+                        <span class="fa fa-tags"></span>
                         <div class="effectif">
                             Effectif 1ère Année
                             <div class="nbr"><?php echo $n2 ?> </div>
