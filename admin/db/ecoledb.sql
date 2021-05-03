@@ -10,11 +10,11 @@ CREATE TABLE utilisateur(
 	role varchar(50) ,
 	email varchar(100) 
 );
-INSERT INTO `utilisateur` (`id_utilisateur`,`login`,`pwd`,`role`,`email`) VALUES 
- (12,'admin','123','Directeur','admin@gmail.com'),
- (13,'swc1','123','Secrétaire','sec1@gmail.com'),
- (14,'sec2','123','Secrétaire','user2@gmail.com'),
- (17,'sec3','123','Secrétaire','test10@gmail.com');
+INSERT INTO `utilisateur` (`login`,`pwd`,`role`,`email`) VALUES 
+ ('admin','123','Directeur','admin@gmail.com'),
+ ('swc1','123','Secrétaire','sec1@gmail.com'),
+ ('sec2','123','Secrétaire','user2@gmail.com'),
+ ('sec3','123','Secrétaire','test10@gmail.com');
 
 CREATE TABLE etudiant (
 	id_etudiant smallint not null AUTO_INCREMENT PRIMARY KEY ,
@@ -29,8 +29,15 @@ CREATE TABLE etudiant (
 	id_campus tinyint
 );
 
+INSERT INTO `etudiant` (`civilite`,`nom`,`prenom`,`date_naissance`,`id_adresse`,`email`,`tel`,`annee_scolaire`,`id_campus`) VALUES 
+ ('monsieur','nguyen','martin','1997-04-25',1,'martinnguyen@outlook.com','1111111111',2,1),
+ ('monsieur','dupont','jean','1996-04-25',2,'jeandupont@outlook.com','1111111111',1,2),
+ ('madame','flores','marie','1998-04-25',3,'floresmarie@outlook.com','1111111111',3,3),
+ ('monsieur','lofter','christian','1994-04-25',4,'christianlofter@outlook.com','1111111111',4,1);
+
+
 create table campus (
-	id_campus tinyint not null auto_increment primary key,
+	id_campus tinyint not null auto_increment primary key, -- 1 pour calais, 2 pour saint-omer et 3 pour dunkerque
 	nom varchar(50),
 	date_creation date
 );
@@ -51,6 +58,13 @@ create table adresse (
 	ville varchar(50),
 	code_postal char(5)
 );
+INSERT INTO `adresse` (`id_adresse`,`indicatif`,`rue`,`ville`,`code_postal`) VALUES 
+ (1,48,'rue des moulineaux','Paris','75415'),
+ (2,54,'rue des asticotes','Paris','75415'),
+ (3,758,'boulevard maastricht','Paris','75415'),
+ (4,1,'avenue beau regard','Paris','75415');
+ 
+
 
 create table entreprise(
 	id_entreprise smallint not null auto_increment primary key,
@@ -66,6 +80,9 @@ create table stage(
 	id_tuteur_externe smallint
 	 
 	);
+	
+	
+	
 		
 	alter table etudiant add constraint foreign key(id_campus) 
 	references campus(id_campus) ON DELETE CASCADE;

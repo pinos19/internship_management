@@ -89,10 +89,10 @@ function dateFrToDateEn($dateFr)
 }
 
 //Effectif des inscris en 1ère et 2ème et en 3 eme
-function getEffectif12($as)
+function getEffectifAll()
 {
     global $pdo;
-    $res = $pdo->query("select count(*) effectif from scolarite where annee_scolaire='$as'");
+    $res = $pdo->query("select count(*) as effectif from etudiant where annee_scolaire in(1,2,3)");
     $nbr = $res->fetch();
     return $nbr['effectif'];
 }

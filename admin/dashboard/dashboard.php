@@ -6,10 +6,10 @@ require_once('../fonctions.php');
 
 $as = annee_scolaire_actuelle(); 
 
-$n1 = getEffectif12($as);
-$n2 = getEffectif1($as);
-$n3 = getEffectif2($as);
-$n4 = getEffectif3($as);
+$n1 = getEffectifAll();
+$n2 = getEffectif1();
+$n3 = getEffectif2();
+$n4 = getEffectif3();
 
 
 ?>
