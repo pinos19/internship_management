@@ -4,7 +4,7 @@ use ecoledb;
 ALTER DATABASE `ecoledb` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 CREATE TABLE utilisateur(
-	id_utilisateur decimal(2) AUTO_INCREMENT PRIMARY KEY,
+	id_utilisateur smallint not null AUTO_INCREMENT PRIMARY KEY,
 	login varchar(100) ,
 	pwd varchar(100) ,
 	role varchar(50) ,
@@ -17,35 +17,35 @@ INSERT INTO `utilisateur` (`id_utilisateur`,`login`,`pwd`,`role`,`email`) VALUES
  (17,'sec3','123','Secrétaire','test10@gmail.com');
 
 CREATE TABLE etudiant (
-	id_etudiant decimal(4)  AUTO_INCREMENT PRIMARY KEY ,
+	id_etudiant smallint not null AUTO_INCREMENT PRIMARY KEY ,
 	nom varchar(50),
 	prenom varchar(50),
 	civilite varchar(50),
 	date_naissance date,
-	id_adresse decimal(5),
+	id_adresse smallint,
 	email varchar(100),
 	tel varchar(50),
-	annee_scolaire decimal(1) -- 1 pour première année, 2 pour deuxième, 3 pour troisième et 4 pour diplômé/sortie de l'école
-	id_campus decimal(1)
+	annee_scolaire decimal(1), -- 1 pour première année, 2 pour deuxième, 3 pour troisième et 4 pour diplômé/sortie de l'école
+	id_campus tinyint
 );
 
 create table campus (
-	id_campus decimal(1) not null auto_increment primary key,
+	id_campus tinyint not null auto_increment primary key,
 	nom varchar(50),
 	date_creation date
 );
 	
 create table tuteur(
-	id_tuteur decimal(4) not null auto_increment primary key,
+	id_tuteur smallint not null auto_increment primary key,
 	nom varchar(50),
 	prenom varchar(50),
-	id_adresse decimal(5),
+	id_adresse smallint,
 	email varchar(100),
-	id_entreprise decimal(5)
+	id_entreprise smallint
 );
 	
 create table adresse (
-	id_adresse decimal(5) not null auto_increment primary key,
+	id_adresse smallint not null auto_increment primary key,
 	indicatif decimal(5),
 	rue varchar(50),
 	ville varchar(50),
@@ -53,25 +53,25 @@ create table adresse (
 );
 
 create table entreprise(
-	id_entreprise decimal(5) not null auto_increment primary key,
+	id_entreprise smallint not null auto_increment primary key,
 	nom varchar(50),
-	id_adresse decimal(5)
+	id_adresse smallint
 	);
 	
 create table stage(
-	id_stage decimal(5) not null auto_increment primary key,
-	stage_niveau decimal(1) -- 1 => stage première année, 2=> deuxième année et 3=> troisième année
-	id_etudiant decimal(4),
-	id_tuteur_interne decimal(4),
-	id_tuteur_externe decimal(4)
+	id_stage smallint not null auto_increment primary key,
+	stage_niveau tinyint, -- 1 => stage première année, 2=> deuxième année et 3=> troisième année
+	id_etudiant smallint,
+	id_tuteur_interne smallint,
+	id_tuteur_externe smallint
 	 
 	);
-	-- resultat : inscrit, abondonne, admis, laureat, redoublant.
 		
+	alter table etudiant add constraint foreign key(id_campus) 
+	references campus(id_campus) ON DELETE CASCADE;
+	
 	alter table etudiant add constraint foreign key(id_adresse) 
 	references adresse(id_adresse) ON DELETE CASCADE;
-	-- ON DELETE CASCADE : si on supprime un stagiaire toutes ces données
-	-- dans la table scolarité seront supprimées
 -- 1 	
 	alter table tuteur add constraint foreign key(id_adresse) 
 	references	adresse(id_adresse) ON DELETE CASCADE;
