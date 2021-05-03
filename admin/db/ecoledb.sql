@@ -1,4 +1,4 @@
-﻿
+
 
 CREATE TABLE utilisateur(
 	id_utilisateur smallint not null AUTO_INCREMENT PRIMARY KEY,
@@ -7,11 +7,6 @@ CREATE TABLE utilisateur(
 	role varchar(50) ,
 	email varchar(100) 
 );
-INSERT INTO `utilisateur` (`login`,`pwd`,`role`,`email`) VALUES 
- ('admin','123','Directeur','admin@gmail.com'),
- ('swc1','123','Secrétaire','sec1@gmail.com'),
- ('sec2','123','Secrétaire','user2@gmail.com'),
- ('sec3','123','Secrétaire','test10@gmail.com');
 
 CREATE TABLE etudiant (
 	id_etudiant smallint not null AUTO_INCREMENT PRIMARY KEY ,

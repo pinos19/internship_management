@@ -5,6 +5,7 @@
 
 	<?php
 
+
 	if(isset($_GET['annee_scolaire']))
 		$annee_scolaire=$_GET['annee_scolaire'];
 	else
@@ -13,7 +14,7 @@
 	include("../fonctions.php");
 
 	require('../connexion.php');
-
+	$pdo->exec("SET CHARACTER SET utf8");
 	$requete_stagiaires = $pdo->query("select E.nom as nom, prenom, civilite, date_naissance, id_adresse, email,tel , 
 						annee_scolaire, C.nom as nom_campus from etudiant E, campus C where annee_scolaire not like 'Dipl%'
 						and C.id_campus=E.id_campus");
@@ -51,7 +52,6 @@
 
 	            <h1 class="text-center"> Liste des stagiaires </h1>
 	            <div class="panel panel-primary">
-					
 
 	                <div class="panel-heading">Rechecher les stagiaires (<?php echo $nbr_stagiaires ?> stagiaires)</div>
 	                <div class="panel-body">
