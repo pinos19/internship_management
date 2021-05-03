@@ -40,6 +40,12 @@ create table campus (
 	nom varchar(50),
 	date_creation date
 );
+
+INSERT INTO `campus` (`id_campus`,`nom`,`date_creation`) VALUES 
+ (1,'Calais','2000-05-12'),
+ (2,'Saint-Omer','2000-05-12'),
+ (3,'Dunkerque','2020-05-12');
+
 	
 create table tuteur(
 	id_tuteur smallint not null auto_increment primary key,
