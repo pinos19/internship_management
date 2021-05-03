@@ -13,8 +13,9 @@
 	if($user!=0){ // l'utilisateur existe
 	
 		$_SESSION['user']=$user; 
+		// $user a autant de champs que la table utilisateurs en a.
 		//La variable $_SESSION['user']est un tableau contenant:
-			//l'id_utilisateur,login,pwd et role de l'utilisateur 
+		//l'id_utilisateur,login,pwd et role de l'utilisateur 
 		
         header("Location:../dashboard/dashboard.php");
 		
