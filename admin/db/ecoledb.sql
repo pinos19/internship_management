@@ -1,7 +1,4 @@
-﻿drop database if exists ecoledb;
-create database ecoledb;
-use ecoledb;
-ALTER DATABASE `ecoledb` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+﻿
 
 CREATE TABLE utilisateur(
 	id_utilisateur smallint not null AUTO_INCREMENT PRIMARY KEY,
@@ -25,7 +22,7 @@ CREATE TABLE etudiant (
 	id_adresse smallint,
 	email varchar(100),
 	tel varchar(50),
-	annee_scolaire varchar(50), -- 1 pour première année, 2 pour deuxième, 3 pour troisième et 4 pour diplômé/sortie de l'école
+	annee_scolaire varchar(50), --  valeurs possibles : Première Année,  Deuxième Année,  Troisième Année et  Diplômé/Plus en formation
 	id_campus tinyint
 );
 
