@@ -26,12 +26,6 @@ CREATE TABLE etudiant (
 	id_campus tinyint
 );
 
-INSERT INTO `etudiant` (`civilite`,`nom`,`prenom`,`date_naissance`,`id_adresse`,`email`,`tel`,`annee_scolaire`,`id_campus`) VALUES 
- ('monsieur','nguyen','martin','1997-04-25',1,'martinnguyen@outlook.com','1111111111','Deuxième Année',1),
- ('monsieur','dupont','jean','1996-04-25',2,'jeandupont@outlook.com','1111111111','Première Année',2),
- ('madame','flores','marie','1998-04-25',3,'floresmarie@outlook.com','1111111111','Troisième Année',3),
- ('monsieur','lofter','christian','1994-04-25',4,'christianlofter@outlook.com','1111111111','Diplômé/plus en formation',1);
-
 
 
 
@@ -40,11 +34,6 @@ create table campus (
 	nom varchar(50),
 	date_creation date
 );
-
-INSERT INTO `campus` (`id_campus`,`nom`,`date_creation`) VALUES 
- (1,'Calais','2000-05-12'),
- (2,'Saint-Omer','2000-05-12'),
- (3,'Dunkerque','2020-05-12');
 
 	
 create table tuteur(
@@ -63,11 +52,7 @@ create table adresse (
 	ville varchar(50),
 	code_postal char(5)
 );
-INSERT INTO `adresse` (`id_adresse`,`indicatif`,`rue`,`ville`,`code_postal`) VALUES 
- (1,48,'rue des moulineaux','Paris','75415'),
- (2,54,'rue des asticotes','Paris','75415'),
- (3,758,'boulevard maastricht','Paris','75415'),
- (4,1,'avenue beau regard','Paris','75415');
+
  
 
 
@@ -111,6 +96,21 @@ create table stage(
 	references tuteur(id_tuteur) ON DELETE CASCADE;
 	
 
+INSERT INTO `campus` (`id_campus`,`nom`,`date_creation`) VALUES 
+ (1,'Calais','2000-05-12'),
+ (2,'Saint-Omer','2000-05-12'),
+ (3,'Dunkerque','2020-05-12');
+	
+INSERT INTO `adresse` (`id_adresse`,`indicatif`,`rue`,`ville`,`code_postal`) VALUES 
+ (1,48,'rue des moulineaux','Paris','75415'),
+ (2,54,'rue des asticotes','Paris','75415'),
+ (3,758,'boulevard maastricht','Paris','75415'),
+ (4,1,'avenue beau regard','Paris','75415');
+ 
+ 
+ INSERT INTO `etudiant` (`civilite`,`nom`,`prenom`,`date_naissance`,`id_adresse`,`email`,`tel`,`annee_scolaire`,`id_campus`) VALUES 
+ ('monsieur','nguyen','martin','1997-04-25',1,'martinnguyen@outlook.com','1111111111','Deuxième Année',1),
+ ('monsieur','dupont','jean','1996-04-25',2,'jeandupont@outlook.com','1111111111','Première Année',2),
+ ('madame','flores','marie','1998-04-25',3,'floresmarie@outlook.com','1111111111','Troisième Année',3),
+ ('monsieur','lofter','christian','1994-04-25',4,'christianlofter@outlook.com','1111111111','Diplômé/plus en formation',1);
 
-	
-	
