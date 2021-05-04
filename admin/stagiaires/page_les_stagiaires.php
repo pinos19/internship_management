@@ -287,18 +287,17 @@
 	                        <td><?php echo $le_stagiaire['email'] ?> </td>
 	                        <td><?php echo $le_stagiaire['tel'] ?> </td>
 							<td>
-								<button class="btn btn-primary">
+								<button class="btn btn-primary" onclick="afficherStages(<?php echo $stage1_indicateur ?>,<?php echo $stage2_indicateur ?>,<?php echo $stage3_indicateur ?>,<?php echo $id_etudiant ?>)">
 	                            	<span class="fa fa-search"></span>
 	                        	</button>
 							</td>
 	                    </tr>
-						<tr class ="<?php echo $le_stagiaire['id_etudiant'] ?>" <?php if(!$stage1_indicateur){ echo "style='display:none'"; } ?>>
-							
-	                        <th colspan="9" style="text-align:center"> Stage de première année - Découverte du milieu du travail </th>
-	                    </tr>
-						<tr class ="<?php echo $le_stagiaire['id_etudiant'] ?>"<?php if(!$stage1_indicateur){ echo "style='display:none'"; } ?>>
-							
-	                        <td colspan="3"><strong>Tuteur interne :</strong><br/>
+						
+						<tr class="<?php echo $id_etudiant ?>" style='display:none'>
+								<th colspan="9" style="text-align:center"> Stage de première année - Découverte du milieu du travail </th>
+						</tr>
+						<tr class="<?php echo $id_etudiant ?>" style='display:none'>
+							<td colspan="3"><strong>Tuteur interne :</strong><br/>
 								Nom : <?php echo $stage1_tuteur_interne['nom'] ?><br/>
 								Prénom : <?php echo $stage1_tuteur_interne['prenom'] ?><br/>
 								Email : <?php echo $stage1_tuteur_interne['email'] ?><br/>
@@ -307,7 +306,7 @@
 								<?php echo $stage1_tuteur_interne['indicatif'].", ".$stage1_tuteur_interne['rue'] ?><br/>
 								<?php echo $stage1_tuteur_interne['code_postal'].", ".$stage1_tuteur_interne['ville'] ?>
 							</td>
-	                        <td colspan="3"><strong>Tuteur externe :</strong><br/>
+							<td colspan="3"><strong>Tuteur externe :</strong><br/>
 								Nom : <?php echo $stage1_tuteur_externe['nom'] ?><br/>
 								Prénom : <?php echo $stage1_tuteur_externe['prenom'] ?><br/>
 								Email : <?php echo $stage1_tuteur_externe['email'] ?><br/>
@@ -316,18 +315,18 @@
 								<?php echo $stage1_tuteur_externe['indicatif'].", ".$stage1_tuteur_externe['rue'] ?><br/>
 								<?php echo $stage1_tuteur_externe['code_postal'].", ".$stage1_tuteur_externe['ville'] ?>
 							</td>
-	                        <td colspan="3"><strong>Entreprise accueillante :</strong><br/>
+							<td colspan="3"><strong>Entreprise accueillante :</strong><br/>
 								Nom : <?php echo $stage1_entreprise['nom'] ?><br/>
 								<strong>Adresse :</strong><br/>
 								<?php echo $stage1_entreprise['indicatif'].", ".$stage1_entreprise['rue'] ?><br/>
 								<?php echo $stage1_entreprise['code_postal'].", ".$stage1_entreprise['ville'] ?>
 								
 							</td>
-	                    </tr>
-						<tr class ="<?php echo $le_stagiaire['id_etudiant'] ?>" <?php if(!$stage2_indicateur){ echo "style='display:none'"; } ?>>
-	                        <th colspan="9" style="text-align:center"> Stage de deuxième année - Assistant Ingénieur </th>
-	                    </tr>
-						<tr class ="<?php echo $le_stagiaire['id_etudiant'] ?>" <?php if(!$stage2_indicateur){ echo "style='display:none'"; } ?>>
+						</tr>
+						<tr class="<?php echo $id_etudiant ?>" style='display:none'>
+							<th colspan="9" style="text-align:center"> Stage de deuxième année - Assistant Ingénieur </th>
+						</tr>
+						<tr class="<?php echo $id_etudiant ?>" style='display:none'>
 							<td colspan="3"><strong>Tuteur interne :</strong><br/>
 								Nom : <?php echo $stage2_tuteur_interne['nom'] ?><br/>
 								Prénom : <?php echo $stage2_tuteur_interne['prenom'] ?><br/>
@@ -337,7 +336,7 @@
 								<?php echo $stage2_tuteur_interne['indicatif'].", ".$stage2_tuteur_interne['rue'] ?><br/>
 								<?php echo $stage2_tuteur_interne['code_postal'].", ".$stage2_tuteur_interne['ville'] ?>
 							</td>
-	                        <td colspan="3"><strong>Tuteur externe :</strong><br/>
+							<td colspan="3"><strong>Tuteur externe :</strong><br/>
 								Nom : <?php echo $stage2_tuteur_externe['nom'] ?><br/>
 								Prénom : <?php echo $stage2_tuteur_externe['prenom'] ?><br/>
 								Email : <?php echo $stage2_tuteur_externe['email'] ?><br/>
@@ -346,18 +345,18 @@
 								<?php echo $stage2_tuteur_externe['indicatif'].", ".$stage2_tuteur_externe['rue'] ?><br/>
 								<?php echo $stage2_tuteur_externe['code_postal'].", ".$stage2_tuteur_externe['ville'] ?>
 							</td>
-	                        <td colspan="3"><strong>Entreprise accueillante :</strong><br/>
+							<td colspan="3"><strong>Entreprise accueillante :</strong><br/>
 								Nom : <?php echo $stage2_entreprise['nom'] ?><br/>
 								<strong>Adresse :</strong><br/>
 								<?php echo $stage2_entreprise['indicatif'].", ".$stage2_entreprise['rue'] ?><br/>
 								<?php echo $stage2_entreprise['code_postal'].", ".$stage2_entreprise['ville'] ?>
-								
+									
 							</td>
-	                    </tr>
-						<tr class ="<?php echo $le_stagiaire['id_etudiant'] ?>" <?php if(!$stage3_indicateur){ echo "style='display:none'"; } ?>>
-	                        <th colspan="9" style="text-align:center"> Stage de troisième année - Projet de Fin d'Etudes </th>
-	                    </tr>
-						<tr class ="<?php echo $le_stagiaire['id_etudiant'] ?>" <?php if(!$stage3_indicateur){ echo "style='display:none'"; } ?>>
+						</tr>
+						<tr class="<?php echo $id_etudiant ?>" style='display:none'>
+							<th colspan="9" style="text-align:center"> Stage de troisième année - Projet de Fin d'Etudes </th>
+						</tr>
+						<tr class="<?php echo $id_etudiant ?>" style='display:none'>
 							<td colspan="3"><strong>Tuteur interne :</strong><br/>
 								Nom : <?php echo $stage3_tuteur_interne['nom'] ?><br/>
 								Prénom : <?php echo $stage3_tuteur_interne['prenom'] ?><br/>
@@ -367,7 +366,7 @@
 								<?php echo $stage3_tuteur_interne['indicatif'].", ".$stage3_tuteur_interne['rue'] ?><br/>
 								<?php echo $stage3_tuteur_interne['code_postal'].", ".$stage3_tuteur_interne['ville'] ?>
 							</td>
-	                        <td colspan="3"><strong>Tuteur externe :</strong><br/>
+							<td colspan="3"><strong>Tuteur externe :</strong><br/>
 								Nom : <?php echo $stage3_tuteur_externe['nom'] ?><br/>
 								Prénom : <?php echo $stage3_tuteur_externe['prenom'] ?><br/>
 								Email : <?php echo $stage3_tuteur_externe['email'] ?><br/>
@@ -376,14 +375,14 @@
 								<?php echo $stage3_tuteur_externe['indicatif'].", ".$stage3_tuteur_externe['rue'] ?><br/>
 								<?php echo $stage3_tuteur_externe['code_postal'].", ".$stage3_tuteur_externe['ville'] ?>
 							</td>
-	                        <td colspan="3"><strong>Entreprise accueillante :</strong><br/>
+							<td colspan="3"><strong>Entreprise accueillante :</strong><br/>
 								Nom : <?php echo $stage3_entreprise['nom'] ?><br/>
 								<strong>Adresse :</strong><br/>
 								<?php echo $stage3_entreprise['indicatif'].", ".$stage3_entreprise['rue'] ?><br/>
 								<?php echo $stage3_entreprise['code_postal'].", ".$stage3_entreprise['ville'] ?>
-								
+									
 							</td>
-	                    </tr>
+						</tr>
 						<?php  } ?>
 					</tbody>
 
@@ -393,6 +392,40 @@
 	                <span class="fa fa-plus"></span> NOUVEAU STAGIAIRE
 	            </a>-->
 	        </div>
+			<script>
+				function afficherStages(stage1,stage2,stage3,id_etudiant){
+					contents = document.getElementsByClassName(id_etudiant);
+					console.log(contents[0].parentNode);
+					if(stage3){
+						if(contents[4].style.display=='none'){
+							contents[4].style.display='block';
+							contents[5].style.display='block';
+						}else{
+							contents[4].style.display='none';
+							contents[5].style.display='none';
+						}
+					}
+					if(stage2){
+						if(contents[2].style.display=='none'){
+							contents[2].style.display='block';
+							contents[3].style.display='block';
+						}else{
+							contents[2].style.display='none';
+							contents[3].style.display='none';
+						}
+					}
+					if(stage1){
+						if(contents[0].style.display=='none'){
+							contents[0].style.display='block';
+							contents[1].style.display='block';
+						}else{
+							contents[0].style.display='none';
+							contents[1].style.display='none';
+						}
+					}
+				}
+
+			</script>
 
 	    </body>
 
