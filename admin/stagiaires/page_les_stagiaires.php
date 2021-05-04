@@ -30,7 +30,7 @@
 	require('../connexion.php');
 	$pdo->exec("SET CHARACTER SET utf8");
 
-	// En fontion des variables sélectionnées, la requête qui affiche les étudiants va être modifier, d'où les $and 
+	// En fontion des variables sélectionnées, la requête qui affiche les étudiants va être modifiée, d'où les $and 
 	switch($annee_scolaire){
 		case 'Toutes les années confondues':
 			$and1 = "";
@@ -76,22 +76,11 @@
 
 	$requete_stagiaires = $pdo->query($requete_preparee);
 	$tous_les_stagiaires = $requete_stagiaires->fetchAll();
-	$nbr_stagiaires = count($tous_les_stagiaires);
-
-
-
-
-	
-
-
+	$nbr_stagiaires = count($tous_les_stagiaires); // $tous_les_stagiaires est un array associatif est contient les étudiants sélectionnés 
+													// par les champs de recherche
 	?>
-
-
-
-
-
 	<!DOCTPE html>
-	    <html>
+	<html>
 
 	    <head>
 	        <meta charset="utf-8" />
@@ -115,14 +104,22 @@
 	            <h1 class="text-center"> Liste des stagiaires </h1>
 	            <div class="panel panel-primary">
 
+
+					<!-- On affiche les critères de la recherche et le nombre d'étudiants trouvés-->
+
 	                <div class="panel-heading">Rechecher les stagiaires, <?php echo "on a : ".$nbr_stagiaires." stagiaires en ".$annee_scolaire." sur ".$campus." avec la recherche : ".$nom_recherche ?> </div>
 	                <div class="panel-body">
 
 	                    <!-- ******************** Début Formulaire de recherche des stagiaires ***************** -->
 	                    <form class="form-inline">
+							<!-- On crée un array qui stocke les valeurs possibles pour la liste déroulante : années -->
 							<?php $annees_tableau = array('Toutes les années confondues','Première Année','Deuxième Année','Troisième Année','Diplômé/Plus en formation');?>
-	                        <!-- On met au-dessus les champs pour les années -->
+	                        
 							<label> Année Scolaire : </label>
+							<!--une variable $_GET va être créer dès que l'user choisit une option de la liste déroulante-->
+							<!--C'est la variable $annee_scolaire qui récupère le choix de l'user, ensuite on parcourt le tableau des années-->
+							<!--et dès qu'il y a match entre l'année choisie et l'année du tableau, on met l'option en selected, cela permet -->
+							<!-- de conserver la saisie même si la page se recherche -->
 	                        <select class="form-control" name="annee_scolaire" onChange="this.form.submit();">
 								<?php  foreach($annees_tableau as $annee){
 									;?>
@@ -131,7 +128,7 @@
 								</option>
 								<?php } ?>
 	                        </select>
-							
+							<!-- même principe avec les campus-->
 							<?php $campus_tableau = array('Tous les campus confondus','Calais','Saint-Omer','Dunkerque');?><!-- On met ici les champs pour le campus-->
 	                        <label> Campus : </label>
 	                        <select class="form-control" name="campus" onChange="this.form.submit();">
@@ -141,7 +138,8 @@
 								</option>
 								<?php } ?>
 	                        </select>
-
+							<!-- recherche par nom $nom_recherche contient ce que rentre l'user dans le champ, la recherche se conserve si l'on modifie l'année/le campus-->
+							<!-- pour remettre la recherche à 0, on fait un onclick qui met la valeur du champ à 0-->
 							<input type="text" name="nom_recherche" id="nom_recherche" value="<?php echo $nom_recherche ?>"	class="form-control" placeholder="Nom" onclick="getElementById('nom_recherche').value=''"/>
 	                        <button class="btn btn-primary">
 	                            <span class="fa fa-search"></span>
@@ -175,6 +173,7 @@
 							$id_etudiant = $le_stagiaire['id_etudiant'];
 
 							//requêtes pour le stage 1
+							//requête qui récupère les informations du tuteur interne/externe et les infos de l'entreprise
 							$req_stage1_tuteur_interne = "select T.nom as nom, T.prenom as prenom, T.email as email,
 														T.tel as tel, A.indicatif as indicatif, A.rue as rue, A.ville as
 														ville, A.code_postal as code_postal
@@ -258,14 +257,17 @@
 							$stage3_tuteur_interne=$stage3_tuteur_interne_result->fetch();
 					  		$stage3_tuteur_externe=$stage3_tuteur_externe_result->fetch();
 							$stage3_entreprise=$stage3_entreprise_result->fetch();
+							//On récupère les informations, cela peut être optimisé 
 
 
-							if(empty($stage1_tuteur_interne)){
+							if(empty($stage1_tuteur_interne)){// test pour savoir si l'étudiant à fait son stage de première année
 								$stage1_indicateur = 0;
 							}else{
 								$stage1_indicateur = 1;
 							}
-							if(empty($stage2_tuteur_interne)){
+
+
+							if(empty($stage2_tuteur_interne)){// idem pour le stage de deuxième année
 								$stage2_indicateur = 0;
 							}else{
 								$stage2_indicateur = 1;
@@ -287,12 +289,14 @@
 	                        <td><?php echo $le_stagiaire['email'] ?> </td>
 	                        <td><?php echo $le_stagiaire['tel'] ?> </td>
 							<td>
+								<!-- on passe à la fonction afficherStages(), les paramètres indicateurs de stage 1/2/3 ainsi que l'indice d'étudiant -->
+								<!-- rappel on est à l'intérieur d'une boucle -->
 								<button class="btn btn-primary" onclick="afficherStages(<?php echo $stage1_indicateur ?>,<?php echo $stage2_indicateur ?>,<?php echo $stage3_indicateur ?>,<?php echo $id_etudiant ?>)">
 	                            	<span class="fa fa-search"></span>
 	                        	</button>
 							</td>
 	                    </tr>
-						
+						<!-- Ici c'est la partie qui affiche les informations concernant le stage 1 -->
 						<tr class="<?php echo $id_etudiant ?>" style='display:none'>
 								<th colspan="9" style="text-align:center"> Stage de première année - Découverte du milieu du travail </th>
 						</tr>
@@ -393,12 +397,13 @@
 	            </a>-->
 	        </div>
 			<script>
-				function afficherStages(stage1,stage2,stage3,id_etudiant){
+				
+				function afficherStages(stage1,stage2,stage3,id_etudiant){ 
 					contents = document.getElementsByClassName(id_etudiant);
 					console.log(contents[0].parentNode);
 					if(stage3){
-						if(contents[4].style.display=='none'){
-							contents[4].style.display='block';
+						if(contents[4].style.display=='none'){ //si le bouton appuie on affiche la section, on tient compte des indicateurs de stage
+							contents[4].style.display='block'; //pour ne pas afficher des sections vides
 							contents[5].style.display='block';
 						}else{
 							contents[4].style.display='none';
