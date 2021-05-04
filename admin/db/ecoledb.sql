@@ -37,6 +37,7 @@ create table tuteur(
 	prenom varchar(50),
 	id_adresse smallint,
 	email varchar(100),
+	tel varchar(50),
 	id_entreprise smallint
 );
 	
@@ -135,15 +136,15 @@ INSERT INTO `adresse` (`id_adresse`,`indicatif`,`rue`,`ville`,`code_postal`) VAL
  (6,'engie',10),
  (7,'EILCO',11);
 
-INSERT INTO `tuteur` (`id_tuteur`,`nom`,`prenom`,`id_adresse`,`email`,`id_entreprise`) VALUES 
+INSERT INTO `tuteur` (`id_tuteur`,`nom`,`prenom`,`id_adresse`,`email`,`tel`,`id_entreprise`) VALUES 
 
- (1,'Lherbier','Régis',12,'regis.lherbier@outlook.com',7),
- (2,'Dupont','Xavier',13,'xavierdupont@hotmail.fr',1),
- (3,'Charles','Jean',14,'jeancharles@hotmail.fr',2),
- (4,'Dubois','Paul',15,'pauldubois@hotmail.fr',3),
- (5,'Lepelletier','Richard',16,'richardlepelletier@hotmail.fr',4),
- (6,'Gump','Forest',17,'forestgump@hotmail.fr',5),
- (7,'Douglas','Mike',18,'mikedouglas@hotmail.fr',6);
+ (1,'Lherbier','Régis',12,'regis.lherbier@outlook.com','1111111111',7),
+ (2,'Dupont','Xavier',13,'xavierdupont@hotmail.fr','1111111111',1),
+ (3,'Charles','Jean',14,'jeancharles@hotmail.fr','1111111111',2),
+ (4,'Dubois','Paul',15,'pauldubois@hotmail.fr','1111111111',3),
+ (5,'Lepelletier','Richard',16,'richardlepelletier@hotmail.fr','1111111111',4),
+ (6,'Gump','Forest',17,'forestgump@hotmail.fr','1111111111',5),
+ (7,'Douglas','Mike',18,'mikedouglas@hotmail.fr','1111111111',6);
 
 
  

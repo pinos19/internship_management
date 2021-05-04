@@ -78,6 +78,9 @@
 	$tous_les_stagiaires = $requete_stagiaires->fetchAll();
 	$nbr_stagiaires = count($tous_les_stagiaires);
 
+
+
+
 	
 
 
@@ -168,7 +171,95 @@
 	                <tbody>
 
 	                    <?php foreach ($tous_les_stagiaires as $le_stagiaire) { ?>
+						<?php 
+							$id_etudiant = $le_stagiaire['id_etudiant'];
+
+							//requêtes pour le stage 1
+							$req_stage1_tuteur_interne = "select T.nom as nom, T.prenom as prenom, T.email as email,
+														T.tel as tel, A.indicatif as indicatif, A.rue as rue, A.ville as
+														ville, A.code_postal as code_postal
+														from etudiant E, stage S, tuteur T, adresse A
+														where S.id_etudiant=$id_etudiant and S.id_tuteur_interne=T.id_tuteur 
+														and T.id_adresse=A.id_adresse and S.stage_niveau=1";
+							$req_stage1_tuteur_externe = "select T.nom as nom, T.prenom as prenom, T.email as email,
+														T.tel as tel, A.indicatif as indicatif, A.rue as rue, A.ville as
+														ville, A.code_postal as code_postal
+														from etudiant E, stage S, tuteur T, adresse A
+														where S.id_etudiant=$id_etudiant and S.id_tuteur_externe=T.id_tuteur 
+														and T.id_adresse=A.id_adresse and S.stage_niveau=1";
+							$req_stage1_entreprise = "select Ent.nom as nom, A.indicatif as indicatif, A.rue as rue, A.ville as ville, 
+														A.code_postal as code_postal
+														from etudiant E, stage S, tuteur T, adresse A, entreprise Ent
+														where S.id_etudiant=$id_etudiant and S.id_tuteur_externe=T.id_tuteur 
+														and T.id_entreprise=Ent.id_entreprise and Ent.id_adresse=A.id_adresse 
+														and S.stage_niveau=1";
+
+							// requêtes pour le stage 2
+							$req_stage2_tuteur_interne = "select T.nom as nom, T.prenom as prenom, T.email as email,
+														T.tel as tel, A.indicatif as indicatif, A.rue as rue, A.ville as
+														ville, A.code_postal as code_postal
+														from etudiant E, stage S, tuteur T, adresse A
+														where S.id_etudiant=$id_etudiant and S.id_tuteur_interne=T.id_tuteur 
+														and T.id_adresse=A.id_adresse and S.stage_niveau=2";
+							$req_stage2_tuteur_externe = "select T.nom as nom, T.prenom as prenom, T.email as email,
+														T.tel as tel, A.indicatif as indicatif, A.rue as rue, A.ville as
+														ville, A.code_postal as code_postal
+														from etudiant E, stage S, tuteur T, adresse A
+														where S.id_etudiant=$id_etudiant and S.id_tuteur_externe=T.id_tuteur 
+														and T.id_adresse=A.id_adresse and S.stage_niveau=2";
+							$req_stage2_entreprise = "select Ent.nom as nom, A.indicatif as indicatif, A.rue as rue, A.ville as ville, 
+														A.code_postal as code_postal
+														from etudiant E, stage S, tuteur T, adresse A, entreprise Ent
+														where S.id_etudiant=$id_etudiant and S.id_tuteur_externe=T.id_tuteur 
+														and T.id_entreprise=Ent.id_entreprise and Ent.id_adresse=A.id_adresse 
+														and S.stage_niveau=2";
+							
+							// requêtes pour le stage 3
+							$req_stage3_tuteur_interne = "select T.nom as nom, T.prenom as prenom, T.email as email,
+														T.tel as tel, A.indicatif as indicatif, A.rue as rue, A.ville as
+														ville, A.code_postal as code_postal
+														from etudiant E, stage S, tuteur T, adresse A
+														where S.id_etudiant=$id_etudiant and S.id_tuteur_interne=T.id_tuteur 
+														and T.id_adresse=A.id_adresse and S.stage_niveau=3";
+							$req_stage3_tuteur_externe = "select T.nom as nom, T.prenom as prenom, T.email as email,
+														T.tel as tel, A.indicatif as indicatif, A.rue as rue, A.ville as
+														ville, A.code_postal as code_postal
+														from etudiant E, stage S, tuteur T, adresse A
+														where S.id_etudiant=$id_etudiant and S.id_tuteur_externe=T.id_tuteur 
+														and T.id_adresse=A.id_adresse and S.stage_niveau=3";
+							$req_stage3_entreprise = "select Ent.nom as nom, A.indicatif as indicatif, A.rue as rue, A.ville as ville, 
+														A.code_postal as code_postal
+														from etudiant E, stage S, tuteur T, adresse A, entreprise Ent
+														where S.id_etudiant=$id_etudiant and S.id_tuteur_externe=T.id_tuteur 
+														and T.id_entreprise=Ent.id_entreprise and Ent.id_adresse=A.id_adresse 
+														and S.stage_niveau=3";
 						
+
+							$stage1_tuteur_interne_result = $pdo->query($req_stage1_tuteur_interne);
+							$stage1_tuteur_externe_result = $pdo->query($req_stage1_tuteur_externe);
+							$stage1_entreprise_result = $pdo->query($req_stage1_entreprise);
+
+							$stage2_tuteur_interne_result = $pdo->query($req_stage2_tuteur_interne);
+							$stage2_tuteur_externe_result = $pdo->query($req_stage2_tuteur_externe);
+							$stage2_entreprise_result = $pdo->query($req_stage2_entreprise);
+
+							$stage3_tuteur_interne_result = $pdo->query($req_stage3_tuteur_interne);
+							$stage3_tuteur_externe_result = $pdo->query($req_stage3_tuteur_externe);
+							$stage3_entreprise_result = $pdo->query($req_stage3_entreprise);
+							
+							$stage1_tuteur_interne=$stage1_tuteur_interne_result->fetch();
+					  		$stage1_tuteur_externe=$stage1_tuteur_externe_result->fetch();
+							$stage1_entreprise=$stage1_entreprise_result->fetch();
+
+							$stage2_tuteur_interne=$stage2_tuteur_interne_result->fetch();
+					  		$stage2_tuteur_externe=$stage2_tuteur_externe_result->fetch();
+							$stage2_entreprise=$stage2_entreprise_result->fetch();
+
+							$stage3_tuteur_interne=$stage3_tuteur_interne_result->fetch();
+					  		$stage3_tuteur_externe=$stage3_tuteur_externe_result->fetch();
+							$stage3_entreprise=$stage3_entreprise_result->fetch();
+							
+						?>
 	                    <tr>
 	                        <td><?php echo $le_stagiaire['nom'] ?> </td>
 	                        <td><?php echo $le_stagiaire['prenom'] ?> </td>
@@ -186,78 +277,96 @@
 	                    </tr>
 						<tr class ="<?php echo $le_stagiaire['id_etudiant'] ?>">
 							
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-							<td> Hello </td>
+	                        <th colspan="9" style="text-align:center"> Stage de première année - Découverte du milieu du travail </th>
 	                    </tr>
 						<tr class ="<?php echo $le_stagiaire['id_etudiant'] ?>">
 							
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-							<td> Hello </td>
+	                        <td colspan="3"><strong>Tuteur interne :</strong><br/>
+								Nom : <?php echo $stage1_tuteur_interne['nom'] ?><br/>
+								Prénom : <?php echo $stage1_tuteur_interne['prenom'] ?><br/>
+								Email : <?php echo $stage1_tuteur_interne['email'] ?><br/>
+								Téléphone : <?php echo $stage1_tuteur_interne['tel'] ?><br/>
+								<strong>Adresse :</strong><br/>
+								<?php echo $stage1_tuteur_interne['indicatif'].", ".$stage1_tuteur_interne['rue'] ?><br/>
+								<?php echo $stage1_tuteur_interne['code_postal'].", ".$stage1_tuteur_interne['ville'] ?>
+							</td>
+	                        <td colspan="3"><strong>Tuteur externe :</strong><br/>
+								Nom : <?php echo $stage1_tuteur_externe['nom'] ?><br/>
+								Prénom : <?php echo $stage1_tuteur_externe['prenom'] ?><br/>
+								Email : <?php echo $stage1_tuteur_externe['email'] ?><br/>
+								Téléphone : <?php echo $stage1_tuteur_externe['tel'] ?><br/>
+								<strong>Adresse :</strong><br/>
+								<?php echo $stage1_tuteur_externe['indicatif'].", ".$stage1_tuteur_externe['rue'] ?><br/>
+								<?php echo $stage1_tuteur_externe['code_postal'].", ".$stage1_tuteur_externe['ville'] ?>
+							</td>
+	                        <td colspan="3"><strong>Entreprise accueillante :</strong><br/>
+								Nom : <?php echo $stage1_entreprise['nom'] ?><br/>
+								<strong>Adresse :</strong><br/>
+								<?php echo $stage1_entreprise['indicatif'].", ".$stage1_entreprise['rue'] ?><br/>
+								<?php echo $stage1_entreprise['code_postal'].", ".$stage1_entreprise['ville'] ?>
+								
+							</td>
 	                    </tr>
 						<tr class ="<?php echo $le_stagiaire['id_etudiant'] ?>">
-							
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-							<td> Hello </td>
+	                        <th colspan="9" style="text-align:center"> Stage de deuxième année - Assistant Ingénieur </th>
 	                    </tr>
 						<tr class ="<?php echo $le_stagiaire['id_etudiant'] ?>">
-							
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-							<td> Hello </td>
+							<td colspan="3"><strong>Tuteur interne :</strong><br/>
+								Nom : <?php echo $stage2_tuteur_interne['nom'] ?><br/>
+								Prénom : <?php echo $stage2_tuteur_interne['prenom'] ?><br/>
+								Email : <?php echo $stage2_tuteur_interne['email'] ?><br/>
+								Téléphone : <?php echo $stage2_tuteur_interne['tel'] ?><br/>
+								<strong>Adresse :</strong><br/>
+								<?php echo $stage2_tuteur_interne['indicatif'].", ".$stage2_tuteur_interne['rue'] ?><br/>
+								<?php echo $stage2_tuteur_interne['code_postal'].", ".$stage2_tuteur_interne['ville'] ?>
+							</td>
+	                        <td colspan="3"><strong>Tuteur externe :</strong><br/>
+								Nom : <?php echo $stage2_tuteur_externe['nom'] ?><br/>
+								Prénom : <?php echo $stage2_tuteur_externe['prenom'] ?><br/>
+								Email : <?php echo $stage2_tuteur_externe['email'] ?><br/>
+								Téléphone : <?php echo $stage2_tuteur_externe['tel'] ?><br/>
+								<strong>Adresse :</strong><br/>
+								<?php echo $stage2_tuteur_externe['indicatif'].", ".$stage2_tuteur_externe['rue'] ?><br/>
+								<?php echo $stage2_tuteur_externe['code_postal'].", ".$stage2_tuteur_externe['ville'] ?>
+							</td>
+	                        <td colspan="3"><strong>Entreprise accueillante :</strong><br/>
+								Nom : <?php echo $stage2_entreprise['nom'] ?><br/>
+								<strong>Adresse :</strong><br/>
+								<?php echo $stage2_entreprise['indicatif'].", ".$stage2_entreprise['rue'] ?><br/>
+								<?php echo $stage2_entreprise['code_postal'].", ".$stage2_entreprise['ville'] ?>
+								
+							</td>
 	                    </tr>
 						<tr class ="<?php echo $le_stagiaire['id_etudiant'] ?>">
-							
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-							<td> Hello </td>
+	                        <th colspan="9" style="text-align:center"> Stage de troisième année - Projet de Fin d'Etudes </th>
 	                    </tr>
 						<tr class ="<?php echo $le_stagiaire['id_etudiant'] ?>">
-							
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-	                        <td> Hello </td>
-							<td> Hello </td>
+							<td colspan="3"><strong>Tuteur interne :</strong><br/>
+								Nom : <?php echo $stage3_tuteur_interne['nom'] ?><br/>
+								Prénom : <?php echo $stage3_tuteur_interne['prenom'] ?><br/>
+								Email : <?php echo $stage3_tuteur_interne['email'] ?><br/>
+								Téléphone : <?php echo $stage3_tuteur_interne['tel'] ?><br/>
+								<strong>Adresse :</strong><br/>
+								<?php echo $stage3_tuteur_interne['indicatif'].", ".$stage3_tuteur_interne['rue'] ?><br/>
+								<?php echo $stage3_tuteur_interne['code_postal'].", ".$stage3_tuteur_interne['ville'] ?>
+							</td>
+	                        <td colspan="3"><strong>Tuteur externe :</strong><br/>
+								Nom : <?php echo $stage3_tuteur_externe['nom'] ?><br/>
+								Prénom : <?php echo $stage3_tuteur_externe['prenom'] ?><br/>
+								Email : <?php echo $stage3_tuteur_externe['email'] ?><br/>
+								Téléphone : <?php echo $stage3_tuteur_externe['tel'] ?><br/>
+								<strong>Adresse :</strong><br/>
+								<?php echo $stage3_tuteur_externe['indicatif'].", ".$stage3_tuteur_externe['rue'] ?><br/>
+								<?php echo $stage3_tuteur_externe['code_postal'].", ".$stage3_tuteur_externe['ville'] ?>
+							</td>
+	                        <td colspan="3"><strong>Entreprise accueillante :</strong><br/>
+								Nom : <?php echo $stage3_entreprise['nom'] ?><br/>
+								<strong>Adresse :</strong><br/>
+								<?php echo $stage3_entreprise['indicatif'].", ".$stage3_entreprise['rue'] ?><br/>
+								<?php echo $stage3_entreprise['code_postal'].", ".$stage3_entreprise['ville'] ?>
+								
+							</td>
 	                    </tr>
-						
-						
 						<?php  } ?>
 					</tbody>
 
@@ -267,10 +376,6 @@
 	                <span class="fa fa-plus"></span> NOUVEAU STAGIAIRE
 	            </a>-->
 	        </div>
-		<script>
-}
-
-		</script>
 
 	    </body>
 
