@@ -90,6 +90,11 @@ create table stage(
 	alter table stage add constraint foreign key(id_tuteur_externe) 
 	references tuteur(id_tuteur) ON DELETE CASCADE;
 	
+INSERT INTO `utilisateur` (`id_utilisateur`,`login`,`pwd`,`role`,`email`) VALUES 
+ (12,'admin','123','Directeur','admin@gmail.com'),
+ (13,'swc1','123','Secrétaire','sec1@gmail.com'),
+ (14,'sec2','123','Secrétaire','user2@gmail.com'),
+ (17,'sec3','123','Secrétaire','test10@gmail.com');
 
 INSERT INTO `campus` (`id_campus`,`nom`,`date_creation`) VALUES 
  (1,'Calais','2000-05-12'),

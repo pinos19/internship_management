@@ -5,6 +5,7 @@
 
 	<?php
 
+	
 
 	if(isset($_GET['annee_scolaire']))
 		$annee_scolaire=$_GET['annee_scolaire'];
@@ -15,6 +16,15 @@
 		$campus=$_GET['campus'];
 	else
 		$campus='Tous les campus confondus';
+
+	if(isset($_GET['nom_recherche'])){
+		$nom_recherche=$_GET['nom_recherche'];
+		$temp_maj = strtoupper($nom_recherche);
+		$and3="and upper(E.nom) like '$temp_maj%'";}
+	else{
+		$nom_recherche='';
+		$and3="";}
+
 
 	include("../fonctions.php");
 	require('../connexion.php');
@@ -62,7 +72,7 @@
 
 
 	$requete_preparee = "select E.nom as nom, prenom, civilite, date_naissance, id_adresse, email,tel , 
-						annee_scolaire, C.nom as nom_campus from etudiant E, campus C where C.id_campus=E.id_campus $and1 $and2";
+						annee_scolaire, C.nom as nom_campus from etudiant E, campus C where C.id_campus=E.id_campus $and1 $and2 $and3";
 
 	$requete_stagiaires = $pdo->query($requete_preparee);
 	$tous_les_stagiaires = $requete_stagiaires->fetchAll();
@@ -81,7 +91,7 @@
 	        <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
 	        <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
 	        <link rel="stylesheet" type="text/css" href="../css/monStyle.css">
-	        <script src="../js/jquery-1.10.2.js"></script>
+	        <script src="../js/jquery-1.10.2.js"></>
 	        <script src="../js/bootstrap.min.js"></script>
 
 	    </head>
@@ -97,7 +107,7 @@
 	            <h1 class="text-center"> Liste des stagiaires </h1>
 	            <div class="panel panel-primary">
 
-	                <div class="panel-heading">Rechecher les stagiaires (<?php echo $nbr_stagiaires ?> stagiaires)</div>
+	                <div class="panel-heading">Rechecher les stagiaires, <?php echo "on a : ".$nbr_stagiaires." stagiaires en ".$annee_scolaire." sur ".$campus." avec la recherche : ".$nom_recherche ?> </div>
 	                <div class="panel-body">
 
 	                    <!-- ******************** Début Formulaire de recherche des stagiaires ***************** -->
@@ -124,6 +134,8 @@
 								<?php } ?>
 	                        </select>
 
+							<input type="text" name="nom_recherche" id="nom_recherche" value="<?php echo $nom_recherche ?>"	class="form-control" placeholder="Nom" onclick="getElementById('nom_recherche').value=''"/>
+
 
 
 							<!--
@@ -142,10 +154,10 @@
 	                            <input type="radio" value="2" <?php// if ($index_classe == 2) echo 'checked' ?>
 	                                onChange="this.form.submit();" name="index_classe">ING2
 	                        </label>
-
+							-->
 	                        <button class="btn btn-primary">
 	                            <span class="fa fa-search"></span>
-	                        </button>-->
+	                        </button>
 	                    </form>
 	                    <!-- ******************** Fin Formulaire de recherche des stagiaires ***************** -->
 
