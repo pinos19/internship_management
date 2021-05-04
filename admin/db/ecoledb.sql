@@ -102,15 +102,62 @@ INSERT INTO `campus` (`id_campus`,`nom`,`date_creation`) VALUES
  (3,'Dunkerque','2020-05-12');
 	
 INSERT INTO `adresse` (`id_adresse`,`indicatif`,`rue`,`ville`,`code_postal`) VALUES 
+-- adresse étudiants
  (1,48,'rue des moulineaux','Paris','75415'),
  (2,54,'rue des asticotes','Paris','75415'),
  (3,758,'boulevard maastricht','Paris','75415'),
- (4,1,'avenue beau regard','Paris','75415');
+ (4,1,'avenue beau regard','Paris','75415'),
+-- adresse entreprises
+ (5,11,'avenue coluche','Paris','75415'),
+ (6,145,'quai de la rapêe','Bordeaux','32100'),
+ (7,21,'rue marcel doriot','Toulouse','00450'),
+ (8,41,'rue lima','Bordeaux','32300'),
+ (9,45,'avenue du lion','lyon','69400'),
+ (10,20,'boulevard capucine','Paris','75415'),
+ (11,200,'rue de l''école','Calais','62100'),
+
+ -- adresse des tuteurs
+(12,200,'rue de la rapêe','Calais','62100'),
+(13,141,'boulevard poissonière','Paris','75415'),
+(14,145,'place d''italie','Mérignac','32100'),
+(15,21,'rue platier','Toulouse','00450'),
+(16,41,'rue torunesol','Bordeaux','32300'),
+(17,45,'avenue lieutenant','lyon','69400'),
+(18,20,'rue richard','Paris','75415');
+
+
+ INSERT INTO `entreprise` (`id_entreprise`,`nom`,`id_adresse`) VALUES 
+ (1,'thales',5),
+ (2,'nexter',6),
+ (3,'matières',7),
+ (4,'sekoia',8),
+ (5,'suez',9),
+ (6,'engie',10),
+ (7,'EILCO',11);
+
+INSERT INTO `tuteur` (`id_tuteur`,`nom`,`prenom`,`id_adresse`,`email`,`id_entreprise`) VALUES 
+
+ (1,'Lherbier','Régis',12,'regis.lherbier@outlook.com',7),
+ (2,'Dupont','Xavier',13,'xavierdupont@hotmail.fr',1),
+ (3,'Charles','Jean',14,'jeancharles@hotmail.fr',2),
+ (4,'Dubois','Paul',15,'pauldubois@hotmail.fr',3),
+ (5,'Lepelletier','Richard',16,'richardlepelletier@hotmail.fr',4),
+ (6,'Gump','Forest',17,'forestgump@hotmail.fr',5),
+ (7,'Douglas','Mike',18,'mikedouglas@hotmail.fr',6);
+
+
  
- 
- INSERT INTO `etudiant` (`civilite`,`nom`,`prenom`,`date_naissance`,`id_adresse`,`email`,`tel`,`annee_scolaire`,`id_campus`) VALUES 
- ('monsieur','nguyen','martin','1997-04-25',1,'martinnguyen@outlook.com','1111111111','Deuxième Année',1),
- ('monsieur','dupont','jean','1996-04-25',2,'jeandupont@outlook.com','1111111111','Première Année',2),
- ('madame','flores','marie','1998-04-25',3,'floresmarie@outlook.com','1111111111','Troisième Année',3),
- ('monsieur','lofter','christian','1994-04-25',4,'christianlofter@outlook.com','1111111111','Diplômé/plus en formation',1);
+ INSERT INTO `etudiant` (`id_etudiant`,`civilite`,`nom`,`prenom`,`date_naissance`,`id_adresse`,`email`,`tel`,`annee_scolaire`,`id_campus`) VALUES 
+ (1,'monsieur','nguyen','martin','1997-04-25',1,'martinnguyen@outlook.com','1111111111','Deuxième Année',1),
+ (2,'monsieur','dupont','jean','1996-04-25',2,'jeandupont@outlook.com','1111111111','Première Année',2),
+ (3,'madame','flores','marie','1998-04-25',3,'floresmarie@outlook.com','1111111111','Troisième Année',3),
+ (4,'monsieur','lofter','christian','1994-04-25',4,'christianlofter@outlook.com','1111111111','Diplômé/plus en formation',1);
+
+ INSERT INTO `stage` (`id_stage`,`stage_niveau`,`id_etudiant`,`id_tuteur_interne`,`id_tuteur_externe`) VALUES 
+ (1,1,1,1,2),-- martin en deuxième année a un stage de premier année avec le tuteur interne régis lherbier et le tuteur externe xavier dupont
+ (2,1,3,1,3),
+ (3,2,3,1,4),
+ (4,1,4,1,5),
+ (5,2,4,1,6),
+ (6,3,4,1,7);
 

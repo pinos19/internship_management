@@ -179,12 +179,73 @@
 	                        <td><?php echo $le_stagiaire['email'] ?> </td>
 	                        <td><?php echo $le_stagiaire['tel'] ?> </td>
 							<td>
-								<button class="btn btn-primary" onclick="afficherStages(<?php echo $le_stagiaire['id_etudiant'] ?>)">
+								<button class="btn btn-primary">
 	                            	<span class="fa fa-search"></span>
 	                        	</button>
 							</td>
 	                    </tr>
-						<tr id ="<?php echo $le_stagiaire['id_etudiant'] ?>" style="display:none">
+						<tr class ="<?php echo $le_stagiaire['id_etudiant'] ?>">
+							
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+							<td> Hello </td>
+	                    </tr>
+						<tr class ="<?php echo $le_stagiaire['id_etudiant'] ?>">
+							
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+							<td> Hello </td>
+	                    </tr>
+						<tr class ="<?php echo $le_stagiaire['id_etudiant'] ?>">
+							
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+							<td> Hello </td>
+	                    </tr>
+						<tr class ="<?php echo $le_stagiaire['id_etudiant'] ?>">
+							
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+							<td> Hello </td>
+	                    </tr>
+						<tr class ="<?php echo $le_stagiaire['id_etudiant'] ?>">
+							
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+							<td> Hello </td>
+	                    </tr>
+						<tr class ="<?php echo $le_stagiaire['id_etudiant'] ?>">
+							
 	                        <td> Hello </td>
 	                        <td> Hello </td>
 	                        <td> Hello </td>
@@ -196,6 +257,7 @@
 							<td> Hello </td>
 	                    </tr>
 						
+						
 						<?php  } ?>
 					</tbody>
 
@@ -206,15 +268,7 @@
 	            </a>-->
 	        </div>
 		<script>
-		function afficherStages(a){
-			if(document.getElementById(a).style.display=='none'){
-				document.getElementById(a).style.display='block';
-			}
-			else{
-				document.getElementById(a).style.display='none';
-			}
-			
-		}
+}
 
 		</script>
 
