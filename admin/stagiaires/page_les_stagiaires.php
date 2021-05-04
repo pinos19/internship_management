@@ -5,7 +5,7 @@
 
 	<?php
 
-	
+	/* Initialisation des variables qui s'instancient lorsqu'on sélectionne dans les listes déroulantes*/
 
 	if(isset($_GET['annee_scolaire']))
 		$annee_scolaire=$_GET['annee_scolaire'];
@@ -30,6 +30,7 @@
 	require('../connexion.php');
 	$pdo->exec("SET CHARACTER SET utf8");
 
+	// En fontion des variables sélectionnées, la requête qui affiche les étudiants va être modifier, d'où les $and 
 	switch($annee_scolaire){
 		case 'Toutes les années confondues':
 			$and1 = "";
@@ -50,7 +51,6 @@
 			exit("Un erreur est survenue");
 
 	}
-
 	switch($campus){
 		case 'Tous les campus confondus':
 			$and2 = "";
@@ -68,10 +68,10 @@
 			exit("Un erreur est survenue");
 	}
 
+	//La requête qui va servir à afficher les stagiaires en fonction des champs sélectionnés
 
 
-
-	$requete_preparee = "select E.nom as nom, prenom, civilite, date_naissance, id_adresse, email,tel , 
+	$requete_preparee = "select id_etudiant, E.nom as nom, prenom, civilite, date_naissance, id_adresse, email,tel , 
 						annee_scolaire, C.nom as nom_campus from etudiant E, campus C where C.id_campus=E.id_campus $and1 $and2 $and3";
 
 	$requete_stagiaires = $pdo->query($requete_preparee);
@@ -82,6 +82,11 @@
 
 
 	?>
+
+
+
+
+
 	<!DOCTPE html>
 	    <html>
 
@@ -135,26 +140,6 @@
 	                        </select>
 
 							<input type="text" name="nom_recherche" id="nom_recherche" value="<?php echo $nom_recherche ?>"	class="form-control" placeholder="Nom" onclick="getElementById('nom_recherche').value=''"/>
-
-
-
-							<!--
-	                        <input type="text" name="mot_cle" value="<?php// echo $mot_cle ?>" class="form-control"
-	                            placeholder="Nom ou prénom">
-
-	                        <label class="radio-inline">
-	                            <input type="radio" value="0" <?php// if ($index_classe == 0) echo 'checked' ?>
-	                                onChange="this.form.submit();" name="index_classe">Toutes les classes
-	                        </label>
-	                        <label class="radio-inline">
-	                            <input type="radio" value="1" <?php// if ($index_classe == 1) echo 'checked' ?>
-	                                onChange="this.form.submit();" name="index_classe">ING1
-	                        </label>
-	                        <label class="radio-inline">
-	                            <input type="radio" value="2" <?php// if ($index_classe == 2) echo 'checked' ?>
-	                                onChange="this.form.submit();" name="index_classe">ING2
-	                        </label>
-							-->
 	                        <button class="btn btn-primary">
 	                            <span class="fa fa-search"></span>
 	                        </button>
@@ -183,7 +168,7 @@
 	                <tbody>
 
 	                    <?php foreach ($tous_les_stagiaires as $le_stagiaire) { ?>
-
+						
 	                    <tr>
 	                        <td><?php echo $le_stagiaire['nom'] ?> </td>
 	                        <td><?php echo $le_stagiaire['prenom'] ?> </td>
@@ -193,17 +178,46 @@
 	                        <td><?php echo $le_stagiaire['nom_campus'] ?> </td>
 	                        <td><?php echo $le_stagiaire['email'] ?> </td>
 	                        <td><?php echo $le_stagiaire['tel'] ?> </td>
-							<td> Hey </td>
+							<td>
+								<button class="btn btn-primary" onclick="afficherStages(<?php echo $le_stagiaire['id_etudiant'] ?>)">
+	                            	<span class="fa fa-search"></span>
+	                        	</button>
+							</td>
 	                    </tr>
+						<tr id ="<?php echo $le_stagiaire['id_etudiant'] ?>" style="display:none">
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+	                        <td> Hello </td>
+							<td> Hello </td>
+	                    </tr>
+						
 						<?php  } ?>
 					</tbody>
 
 	        	</table>
 	            
-	            <a href="page_add_stagiaire.php" class="btn btn-primary">
+	            <!--<a href="page_add_stagiaire.php" class="btn btn-primary">
 	                <span class="fa fa-plus"></span> NOUVEAU STAGIAIRE
-	            </a>
+	            </a>-->
 	        </div>
+		<script>
+		function afficherStages(a){
+			if(document.getElementById(a).style.display=='none'){
+				document.getElementById(a).style.display='block';
+			}
+			else{
+				document.getElementById(a).style.display='none';
+			}
+			
+		}
+
+		</script>
+
 	    </body>
 
 	</html>
