@@ -258,6 +258,23 @@
 							$stage3_tuteur_interne=$stage3_tuteur_interne_result->fetch();
 					  		$stage3_tuteur_externe=$stage3_tuteur_externe_result->fetch();
 							$stage3_entreprise=$stage3_entreprise_result->fetch();
+
+
+							if(empty($stage1_tuteur_interne)){
+								$stage1_indicateur = 0;
+							}else{
+								$stage1_indicateur = 1;
+							}
+							if(empty($stage2_tuteur_interne)){
+								$stage2_indicateur = 0;
+							}else{
+								$stage2_indicateur = 1;
+							}
+							if(empty($stage3_tuteur_interne)){
+								$stage3_indicateur = 0;
+							}else{
+								$stage3_indicateur = 1;
+							}
 							
 						?>
 	                    <tr>
@@ -275,11 +292,11 @@
 	                        	</button>
 							</td>
 	                    </tr>
-						<tr class ="<?php echo $le_stagiaire['id_etudiant'] ?>">
+						<tr class ="<?php echo $le_stagiaire['id_etudiant'] ?>" <?php if(!$stage1_indicateur){ echo "style='display:none'"; } ?>>
 							
 	                        <th colspan="9" style="text-align:center"> Stage de première année - Découverte du milieu du travail </th>
 	                    </tr>
-						<tr class ="<?php echo $le_stagiaire['id_etudiant'] ?>">
+						<tr class ="<?php echo $le_stagiaire['id_etudiant'] ?>"<?php if(!$stage1_indicateur){ echo "style='display:none'"; } ?>>
 							
 	                        <td colspan="3"><strong>Tuteur interne :</strong><br/>
 								Nom : <?php echo $stage1_tuteur_interne['nom'] ?><br/>
@@ -307,10 +324,10 @@
 								
 							</td>
 	                    </tr>
-						<tr class ="<?php echo $le_stagiaire['id_etudiant'] ?>">
+						<tr class ="<?php echo $le_stagiaire['id_etudiant'] ?>" <?php if(!$stage2_indicateur){ echo "style='display:none'"; } ?>>
 	                        <th colspan="9" style="text-align:center"> Stage de deuxième année - Assistant Ingénieur </th>
 	                    </tr>
-						<tr class ="<?php echo $le_stagiaire['id_etudiant'] ?>">
+						<tr class ="<?php echo $le_stagiaire['id_etudiant'] ?>" <?php if(!$stage2_indicateur){ echo "style='display:none'"; } ?>>
 							<td colspan="3"><strong>Tuteur interne :</strong><br/>
 								Nom : <?php echo $stage2_tuteur_interne['nom'] ?><br/>
 								Prénom : <?php echo $stage2_tuteur_interne['prenom'] ?><br/>
@@ -337,10 +354,10 @@
 								
 							</td>
 	                    </tr>
-						<tr class ="<?php echo $le_stagiaire['id_etudiant'] ?>">
+						<tr class ="<?php echo $le_stagiaire['id_etudiant'] ?>" <?php if(!$stage3_indicateur){ echo "style='display:none'"; } ?>>
 	                        <th colspan="9" style="text-align:center"> Stage de troisième année - Projet de Fin d'Etudes </th>
 	                    </tr>
-						<tr class ="<?php echo $le_stagiaire['id_etudiant'] ?>">
+						<tr class ="<?php echo $le_stagiaire['id_etudiant'] ?>" <?php if(!$stage3_indicateur){ echo "style='display:none'"; } ?>>
 							<td colspan="3"><strong>Tuteur interne :</strong><br/>
 								Nom : <?php echo $stage3_tuteur_interne['nom'] ?><br/>
 								Prénom : <?php echo $stage3_tuteur_interne['prenom'] ?><br/>
