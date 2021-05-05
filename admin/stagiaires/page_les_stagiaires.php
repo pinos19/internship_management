@@ -400,7 +400,6 @@
 				
 				function afficherStages(stage1,stage2,stage3,id_etudiant){ 
 					contents = document.getElementsByClassName(id_etudiant);
-					console.log(contents[0].parentNode);
 					if(stage3){
 						if(contents[4].style.display=='none'){ //si le bouton appuie on affiche la section, on tient compte des indicateurs de stage
 							contents[4].style.display='block'; //pour ne pas afficher des sections vides
