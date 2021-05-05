@@ -2,14 +2,14 @@
 include("../fonctions.php");
 
 if (isset($_GET['id_stagiaire']))
-	$ids = $_GET['id_stagiaire'];
+    $ids = $_GET['id_stagiaire'];
 else
-	$ids = 0;
+    $ids = 0;
 
 if (isset($_GET['annee_scolaire']))
-	$as = $_GET['annee_scolaire'];
+    $as = $_GET['annee_scolaire'];
 else
-	$as = annee_scolaire_actuelle();
+    $as = annee_scolaire_actuelle();
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,9 +28,8 @@ else
             <div class="panel-body text-center">
 
                 <a class="btn btn-success" href="convention_stage.php?ids=<?php echo $ids ?>&as=<?php echo $as ?>">
-                    Convention de stage
+                    Fiche d'informations
                 </a>
-
             </div>
         </div>
     </div>
