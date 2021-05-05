@@ -1,5 +1,3 @@
-
-
 CREATE TABLE utilisateur(
 	id_utilisateur smallint not null AUTO_INCREMENT PRIMARY KEY,
 	login varchar(100) ,
@@ -161,4 +159,5 @@ INSERT INTO `tuteur` (`id_tuteur`,`nom`,`prenom`,`id_adresse`,`email`,`tel`,`id_
  (4,1,4,1,5),
  (5,2,4,1,6),
  (6,3,4,1,7);
+
 
