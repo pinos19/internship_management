@@ -1,69 +1,70 @@
 CREATE TABLE utilisateur(
-	id_utilisateur smallint not null AUTO_INCREMENT PRIMARY KEY,
-	login varchar(100) ,
-	pwd varchar(100) ,
-	role varchar(50) ,
+	id_utilisateur smallint AUTO_INCREMENT PRIMARY KEY,
+	login varchar(100) not null,
+	pwd varchar(100) not null,
+	role varchar(50) not null,
 	email varchar(100) 
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE etudiant (
-	id_etudiant smallint not null AUTO_INCREMENT PRIMARY KEY ,
-	nom varchar(50),
-	prenom varchar(50),
-	civilite varchar(50),
+	id_etudiant smallint AUTO_INCREMENT PRIMARY KEY ,
+	nom varchar(50) not null,
+	prenom varchar(50) not null,
+	civilite varchar(50) not null,
 	date_naissance date,
 	id_adresse smallint,
-	email varchar(100),
+	email varchar(100) not null,
 	tel varchar(50),
-	annee_scolaire varchar(50), --  valeurs possibles : Première Année,  Deuxième Année,  Troisième Année et  Diplômé/Plus en formation
+	annee_scolaire varchar(50) not null, --  valeurs possibles : Première Année,  Deuxième Année,  Troisième Année et  Diplômé/Plus en formation
 	id_campus tinyint
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 
 
 create table campus (
-	id_campus tinyint not null auto_increment primary key, -- 1 pour calais, 2 pour saint-omer et 3 pour dunkerque
-	nom varchar(50),
+	id_campus tinyint auto_increment primary key, -- 1 pour calais, 2 pour saint-omer et 3 pour dunkerque
+	nom varchar(50) not null,
+	filiere varchar(100) not null,
 	date_creation date
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 	
 create table tuteur(
-	id_tuteur smallint not null auto_increment primary key,
-	nom varchar(50),
-	prenom varchar(50),
+	id_tuteur smallint auto_increment primary key,
+	nom varchar(50) not null,
+	prenom varchar(50) not null,
 	id_adresse smallint,
-	email varchar(100),
+	email varchar(100) not null,
 	tel varchar(50),
-	id_entreprise smallint
-);
+	id_entreprise smallint not null
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 	
 create table adresse (
-	id_adresse smallint not null auto_increment primary key,
+	id_adresse smallint auto_increment primary key,
 	indicatif decimal(5),
 	rue varchar(50),
-	ville varchar(50),
-	code_postal char(5)
-);
+	ville varchar(50) not null,
+	code_postal char(5) not null
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
  
 
 
 create table entreprise(
-	id_entreprise smallint not null auto_increment primary key,
-	nom varchar(50),
-	id_adresse smallint
-	);
+	id_entreprise smallint auto_increment primary key,
+	nom varchar(50) not null,
+	id_adresse smallint not null
+	)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 	
 create table stage(
-	id_stage smallint not null auto_increment primary key,
-	stage_niveau tinyint, -- 1 => stage première année, 2=> deuxième année et 3=> troisième année
-	id_etudiant smallint,
-	id_tuteur_interne smallint,
-	id_tuteur_externe smallint
-	 
-	);
+	id_stage smallint auto_increment primary key,
+	libelle varchar(100) not null,
+	stage_niveau tinyint not null, -- 1 => stage première année, 2=> deuxième année et 3=> troisième année
+	id_etudiant smallint not null,
+	id_tuteur_interne smallint not null,
+	id_tuteur_externe smallint not null
+	)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 	
 	
 	
@@ -95,10 +96,10 @@ INSERT INTO `utilisateur` (`id_utilisateur`,`login`,`pwd`,`role`,`email`) VALUES
  (14,'sec2','123','Secrétaire','user2@gmail.com'),
  (17,'sec3','123','Secrétaire','test10@gmail.com');
 
-INSERT INTO `campus` (`id_campus`,`nom`,`date_creation`) VALUES 
- (1,'Calais','2000-05-12'),
- (2,'Saint-Omer','2000-05-12'),
- (3,'Dunkerque','2020-05-12');
+INSERT INTO `campus` (`id_campus`,`nom`,`filiere`,`date_creation`) VALUES 
+ (1,'Calais','Génie informatique','2000-05-12'),
+ (2,'Saint-Omer','Génie Industriel','2000-05-12'),
+ (3,'Dunkerque','Génie Energétique et Environnement','2020-05-12');
 	
 INSERT INTO `adresse` (`id_adresse`,`indicatif`,`rue`,`ville`,`code_postal`) VALUES 
 -- adresse étudiants
@@ -114,6 +115,7 @@ INSERT INTO `adresse` (`id_adresse`,`indicatif`,`rue`,`ville`,`code_postal`) VAL
  (9,45,'avenue du lion','lyon','69400'),
  (10,20,'boulevard capucine','Paris','75415'),
  (11,200,'rue de l''école','Calais','62100'),
+ (20,'14','rue saint martial','Toulouse','45780'),
 
  -- adresse des tuteurs
 (12,200,'rue de la rapêe','Calais','62100'),
@@ -122,7 +124,8 @@ INSERT INTO `adresse` (`id_adresse`,`indicatif`,`rue`,`ville`,`code_postal`) VAL
 (15,21,'rue platier','Toulouse','00450'),
 (16,41,'rue torunesol','Bordeaux','32300'),
 (17,45,'avenue lieutenant','lyon','69400'),
-(18,20,'rue richard','Paris','75415');
+(18,20,'rue richard','Paris','75415'),
+(19,'45','rue le bon coin','Toulouse','45780');
 
 
  INSERT INTO `entreprise` (`id_entreprise`,`nom`,`id_adresse`) VALUES 
@@ -132,7 +135,8 @@ INSERT INTO `adresse` (`id_adresse`,`indicatif`,`rue`,`ville`,`code_postal`) VAL
  (4,'sekoia',8),
  (5,'suez',9),
  (6,'engie',10),
- (7,'EILCO',11);
+ (7,'EILCO',11),
+ (8, 'coca-cola', 20);
 
 INSERT INTO `tuteur` (`id_tuteur`,`nom`,`prenom`,`id_adresse`,`email`,`tel`,`id_entreprise`) VALUES 
 
@@ -142,7 +146,8 @@ INSERT INTO `tuteur` (`id_tuteur`,`nom`,`prenom`,`id_adresse`,`email`,`tel`,`id_
  (4,'Dubois','Paul',15,'pauldubois@hotmail.fr','1111111111',3),
  (5,'Lepelletier','Richard',16,'richardlepelletier@hotmail.fr','1111111111',4),
  (6,'Gump','Forest',17,'forestgump@hotmail.fr','1111111111',5),
- (7,'Douglas','Mike',18,'mikedouglas@hotmail.fr','1111111111',6);
+ (7,'Douglas','Mike',18,'mikedouglas@hotmail.fr','1111111111',6),
+ (8,'Henry','Jacques',19,'jacqueshenry@hotmail.fr','1111111111',8);
 
 
  
@@ -152,12 +157,13 @@ INSERT INTO `tuteur` (`id_tuteur`,`nom`,`prenom`,`id_adresse`,`email`,`tel`,`id_
  (3,'madame','flores','marie','1998-04-25',3,'floresmarie@outlook.com','1111111111','Troisième Année',3),
  (4,'monsieur','lofter','christian','1994-04-25',4,'christianlofter@outlook.com','1111111111','Diplômé/plus en formation',1);
 
- INSERT INTO `stage` (`id_stage`,`stage_niveau`,`id_etudiant`,`id_tuteur_interne`,`id_tuteur_externe`) VALUES 
- (1,1,1,1,2),-- martin en deuxième année a un stage de premier année avec le tuteur interne régis lherbier et le tuteur externe xavier dupont
- (2,1,3,1,3),
- (3,2,3,1,4),
- (4,1,4,1,5),
- (5,2,4,1,6),
- (6,3,4,1,7);
+ INSERT INTO `stage` (`id_stage`,`libelle`,`stage_niveau`,`id_etudiant`,`id_tuteur_interne`,`id_tuteur_externe`) VALUES 
+ (1,'Stage de première année - Découverte du milieu du travail',1,1,1,2),-- martin en deuxième année a un stage de premier année avec le tuteur interne régis lherbier et le tuteur externe xavier dupont
+ (2,'Stage de première année - Découverte du milieu du travail',1,3,1,3),
+ (3,'Stage de deuxième année - Assistant Ingénieur',2,3,1,4),
+ (4,'Stage de première année - Découverte du milieu du travail',1,4,1,5),
+ (5,'Stage de deuxième année - Assistant Ingénieur',2,4,1,6),
+ (6,'Stage de troisième année - Projet de Fin d''Etudes',3,4,1,7);
+ (7,'Stage de deuxième année - Assistant Ingénieur',2,1,1,8);
 
 
