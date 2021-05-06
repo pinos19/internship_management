@@ -104,7 +104,7 @@ function getEffectif1()
 {
     global $pdo;
     $pdo->exec("SET CHARACTER SET utf8");
-    $res = $pdo->query("select count(*) as effectif from etudiant where annee_scolaire = 'Première Année'");
+    $res = $pdo->query("select count(*) as effectif from etudiant where annee_scolaire = 'ING1'");
     $nbr = $res->fetch();
     return $nbr['effectif'];
 }
@@ -114,7 +114,7 @@ function getEffectif2()
 {
     global $pdo;
     $pdo->exec("SET CHARACTER SET utf8");
-    $res = $pdo->query("select count(*) as effectif from etudiant where annee_scolaire = 'Deuxième Année'");
+    $res = $pdo->query("select count(*) as effectif from etudiant where annee_scolaire = 'ING2'");
     $nbr = $res->fetch();
     return $nbr['effectif'];
 }
@@ -125,7 +125,7 @@ function getEffectif3()
 {
     global $pdo;
     $pdo->exec("SET CHARACTER SET utf8");
-    $res = $pdo->query("select count(*) as effectif from etudiant where annee_scolaire = 'Troisième Année'");
+    $res = $pdo->query("select count(*) as effectif from etudiant where annee_scolaire = 'ING3'");
     $nbr = $res->fetch();
     return $nbr['effectif'];
 }
