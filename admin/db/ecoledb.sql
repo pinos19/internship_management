@@ -152,9 +152,9 @@ INSERT INTO `tuteur` (`id_tuteur`,`nom`,`prenom`,`id_adresse`,`email`,`tel`,`id_
 
  
  INSERT INTO `etudiant` (`id_etudiant`,`civilite`,`nom`,`prenom`,`date_naissance`,`id_adresse`,`email`,`tel`,`annee_scolaire`,`id_campus`) VALUES 
- (1,'monsieur','nguyen','martin','1997-04-25',1,'martinnguyen@outlook.com','1111111111','Deuxième Année',1),
- (2,'monsieur','dupont','jean','1996-04-25',2,'jeandupont@outlook.com','1111111111','Première Année',2),
- (3,'madame','flores','marie','1998-04-25',3,'floresmarie@outlook.com','1111111111','Troisième Année',3),
+ (1,'monsieur','nguyen','martin','1997-04-25',1,'martinnguyen@outlook.com','1111111111','ING2',1),
+ (2,'monsieur','dupont','jean','1996-04-25',2,'jeandupont@outlook.com','1111111111','ING1',2),
+ (3,'madame','flores','marie','1998-04-25',3,'floresmarie@outlook.com','1111111111','ING3',3),
  (4,'monsieur','lofter','christian','1994-04-25',4,'christianlofter@outlook.com','1111111111','Diplômé/plus en formation',1);
 
  INSERT INTO `stage` (`id_stage`,`libelle`,`stage_niveau`,`id_etudiant`,`id_tuteur_interne`,`id_tuteur_externe`) VALUES 
@@ -163,7 +163,7 @@ INSERT INTO `tuteur` (`id_tuteur`,`nom`,`prenom`,`id_adresse`,`email`,`tel`,`id_
  (3,'Stage de deuxième année - Assistant Ingénieur',2,3,1,4),
  (4,'Stage de première année - Découverte du milieu du travail',1,4,1,5),
  (5,'Stage de deuxième année - Assistant Ingénieur',2,4,1,6),
- (6,'Stage de troisième année - Projet de Fin d''Etudes',3,4,1,7);
+ (6,'Stage de troisième année - Projet de Fin d''Etudes',3,4,1,7),
  (7,'Stage de deuxième année - Assistant Ingénieur',2,1,1,8);
 
 

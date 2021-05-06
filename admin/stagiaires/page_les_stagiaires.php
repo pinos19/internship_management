@@ -36,13 +36,13 @@ switch ($annee_scolaire) {
     case 'Toutes les années confondues':
         $and1 = "";
         break;
-    case 'Première Année':
+    case 'ING1':
         $and1 = "and annee_scolaire='ING1'";
         break;
-    case 'Deuxième Année':
+    case 'ING2':
         $and1 = "and annee_scolaire='ING2'";
         break;
-    case 'Troisième Année':
+    case 'ING3':
         $and1 = "and annee_scolaire='ING3'";
         break;
     case 'Diplômé/Plus en formation':
@@ -115,7 +115,7 @@ $nbr_stagiaires = count($tous_les_stagiaires); // $tous_les_stagiaires est un ar
                     <!-- ******************** Début Formulaire de recherche des stagiaires ***************** -->
                     <form class="form-inline">
                         <!-- On crée un array qui stocke les valeurs possibles pour la liste déroulante : années -->
-                        <?php $annees_tableau = array('Toutes les années confondues', 'Première Année', 'Deuxième Année', 'Troisième Année', 'Diplômé/Plus en formation'); ?>
+                        <?php $annees_tableau = array('Toutes les années confondues', 'ING1', 'ING2', 'ING3', 'Diplômé/Plus en formation'); ?>
 
                         <label> Année Scolaire : </label>
                         <!--une variable $_GET va être créer dès que l'user choisit une option de la liste déroulante-->
@@ -296,7 +296,7 @@ $nbr_stagiaires = count($tous_les_stagiaires); // $tous_les_stagiaires est un ar
                             <!-- rappel on est à l'intérieur d'une boucle -->
                             <button class="btn btn-primary"
                                 onclick="afficherStages(<?php echo $stage1_indicateur ?>,<?php echo $stage2_indicateur ?>,<?php echo $stage3_indicateur ?>,<?php echo $id_etudiant ?>)">
-                                <span class="fa fa-search"></span>
+                                <span class="fa fa-caret-down"></span>
                             </button>
                             <a class="btn btn-success"
                                 href="../fpdf/page_document.php?id_stagiaire=<?php echo $le_stagiaire['id_etudiant'] ?>">

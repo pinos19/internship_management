@@ -8,7 +8,7 @@
 	
 		
 	require('../connexion.php');
-	
+	$pdo->exec("SET CHARACTER SET utf8");
 	$requete="select * from utilisateur";
 	$resultat=$pdo->query($requete);
 	$les_utilisateurs=$resultat->fetchAll();
@@ -72,7 +72,7 @@
 				</div>
 			</div>
 			<?php if($_SESSION['user']['role']=="Directeur"){?>
-				<a class="btn btn-primary" href="page_add_utilisateur.php">Nouveal utilisateur</a>
+				<a class="btn btn-primary" href="page_add_utilisateur.php">Nouvel utilisateur</a>
 			<?php } ?>
 			
 		</div>
