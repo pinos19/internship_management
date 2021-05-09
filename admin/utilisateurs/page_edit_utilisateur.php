@@ -6,7 +6,6 @@
 	require('../connexion.php');
 	
 	$id=$_GET['id'];
-	
 	$requete="select * from utilisateur where id_utilisateur=$id";
 	$resultat=$pdo->query($requete);
 	$utilisateur=$resultat->fetch();

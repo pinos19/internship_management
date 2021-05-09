@@ -29,7 +29,6 @@ if (isset($_GET['nom_recherche'])) {
 
 include("../fonctions.php");
 require('../connexion.php');
-$pdo->exec("SET CHARACTER SET utf8");
 
 // En fontion des variables sélectionnées, la requête qui affiche les étudiants va être modifiée, d'où les $and 
 switch ($annee_scolaire) {

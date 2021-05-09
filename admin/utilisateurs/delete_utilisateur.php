@@ -16,7 +16,7 @@
 		$resultat=$requete->execute();
 		
 		
-		$msg= "Utilisateur Supprimé avec sucées";
+		$msg= "Utilisateur Supprimé avec succès";
 		$url= "utilisateurs/page_les_utilisateurs.php";		
 		header("location:../message.php?msg=$msg&color=v&url=$url");
 		

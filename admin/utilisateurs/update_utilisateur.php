@@ -28,7 +28,7 @@
 			$valeurs=array($login,$pwd,$role,$email,$id_udser);			
 			$resultat=$requete->execute($valeurs);
 			
-			$msg= "Utilisateur modifié avec sucées";
+			$msg= "Utilisateur modifié avec succès";
 					
 			header("location:../message.php?msg=$msg&color=v");
 		}

@@ -8,7 +8,6 @@
 	
 		
 	require('../connexion.php');
-	$pdo->exec("SET CHARACTER SET utf8");
 	$requete="select * from utilisateur";
 	$resultat=$pdo->query($requete);
 	$les_utilisateurs=$resultat->fetchAll();

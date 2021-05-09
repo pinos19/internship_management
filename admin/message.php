@@ -2,7 +2,7 @@
 <?php // on prend en compte un cas de succès, ça n'a pas trop de sens car une fois arrivé sur cette page, c'est forcément que 
 //l'utilisateur n'est pas dans la base de données
 	
-	/*if(isset($_GET['msg']))
+	if(isset($_GET['msg']))
 		$msg=$_GET['msg'];
 	else
 		$msg="";
@@ -23,13 +23,8 @@
 		$alerte='alert alert-danger';
 
 
-	*/
+	
 	// on prend pour hypothèse qu'il n'y auncun utilisateurs malveillants pour l'instant donc on a :
-	$msg=$_GET['msg'];
-	$color=$_GET['color'];
-	$url=$_GET['url'];
-	$alerte='alert alert-danger';
-
 
 
 ?>
