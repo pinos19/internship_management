@@ -69,7 +69,7 @@ $index_classe   = $_POST['index_classe'];
 $index_filiere  = $_POST['index_filiere'];
 
 
-$msg = "Stagiaire modifié avec succes";
+$msg = "Stagiaire modifié avec succès";
 $url = "stagiaires/page_les_stagiaires.php?annee_scolaire =$annee_scolaire&index_filiere=$index_filiere&index_classe=$index_classe";
 header("location:../message.php?msg=$msg&color=v&url=$url");
 ?>

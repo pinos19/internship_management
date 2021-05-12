@@ -37,7 +37,7 @@
 		$valeurs=array(NULL,$login,$pwd,$role,$email);
 		$resultat=$requete->execute($valeurs);
 		
-		$msg= "Utilisateur Ajouté avec sucées";
+		$msg= "Utilisateur Ajouté avec succès";
 		$url="utilisateurs/page_les_utilisateurs.php";		
 		header("location:../message.php?msg=$msg&color=v&url=$url");		
 		
